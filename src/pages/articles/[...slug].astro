@@ -31,7 +31,7 @@ const isEnglish = article.id.startsWith("en/");
 ---
 
 <Layout
-  title={`${article.data.title} | Green Software Foundation`}
+  title={`${article.data.title} | Brown Web Foundation`}
   description={seoDescription}
   ogImage={article.data.mainImage?.src}
   ogType="article"
@@ -47,16 +47,16 @@ const isEnglish = article.id.startsWith("en/");
     "description": seoDescription,
     "datePublished": article.data.date.toISOString(),
     "image": article.data.mainImage?.src ? new URL(article.data.mainImage.src, "https://greensoftware.foundation").href : undefined,
-    "author": authorNames.length > 0 ? authorNames.map((name) => ({ "@type": "Person", "name": name })) : { "@type": "Organization", "name": "Green Software Foundation" },
+    "author": authorNames.length > 0 ? authorNames.map((name) => ({ "@type": "Person", "name": name })) : { "@type": "Organization", "name": "Brown Web Foundation" },
     "publisher": {
       "@type": "Organization",
-      "name": "Green Software Foundation",
+      "name": "Brown Web Foundation",
       "url": "https://greensoftware.foundation",
     },
   })} />
   <Navbar
     logoSrc="/assets/gsf-logo-full.svg"
-    logoAlt="Green Software Foundation"
+    logoAlt="Brown Web Foundation"
     logoHref="/"
     topBar="none"
     showSearch

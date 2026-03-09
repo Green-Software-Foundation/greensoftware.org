@@ -7,7 +7,7 @@ export default {
 export const FullLogo = {
   args: {
     logoSrc: "/assets/gsf-logo-full.svg",
-    logoAlt: "Green Software Foundation",
+    logoAlt: "Brown Web Foundation",
     logoHref: "/",
     topBar: "none",
     showSearch: true,
@@ -19,7 +19,7 @@ export const FullLogo = {
 export const ProjectBy = {
   args: {
     logoSrc: "/assets/gsf-logo-full.svg",
-    logoAlt: "Green Software Foundation",
+    logoAlt: "Brown Web Foundation",
     logoHref: "/",
     topBar: "project-by",
     ctaText: "Get Started",
@@ -30,7 +30,7 @@ export const ProjectBy = {
 export const Minimal = {
   args: {
     logoSrc: "/assets/gsf-logo-full.svg",
-    logoAlt: "Green Software Foundation",
+    logoAlt: "Brown Web Foundation",
     logoHref: "/",
     topBar: "none",
   },

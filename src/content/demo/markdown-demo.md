@@ -200,10 +200,10 @@ Content below the rule.
 ### Standard Image
 
 ```markdown
-![Green Software Foundation logo](/assets/gsf-logo-full.svg)
+![Brown Web Foundation logo](/assets/gsf-logo-full.svg)
 ```
 
-![Green Software Foundation logo](/assets/gsf-logo-full.svg)
+![Brown Web Foundation logo](/assets/gsf-logo-full.svg)
 
 ### Full-Width Image
 

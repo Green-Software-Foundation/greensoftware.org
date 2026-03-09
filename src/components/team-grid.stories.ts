@@ -7,7 +7,7 @@ export default {
 export const Default = {
   args: {
     heading: "Our *Leadership*",
-    body: "The team driving the Green Software Foundation forward.",
+    body: "The team driving the Brown Web Foundation forward.",
     members: [
       { fullName: "Jane Smith", role: "Executive Director", company: "GSF" },
       { fullName: "Alex Chen", role: "Head of Standards", company: "GSF" },

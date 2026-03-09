@@ -249,7 +249,7 @@ export default function SearchDialog() {
 
           <Dialog.Title className="sr-only">Search</Dialog.Title>
           <Dialog.Description className="sr-only">
-            Search articles, stories, and pages on the Green Software Foundation website.
+            Search articles, stories, and pages on the Brown Web Foundation website.
           </Dialog.Description>
         </Dialog.Content>
       </Dialog.Portal>

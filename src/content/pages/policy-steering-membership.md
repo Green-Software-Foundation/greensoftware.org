@@ -9,7 +9,7 @@ This document is a collaborative effort between the Steering Committee members t
 
 As a steering committee member, you are responsible for: 
 
-- Working to help the Green Software Foundation meet its mission and vision for the entire software industry.
+- Working to help the Brown Web Foundation meet its mission and vision for the entire software industry.
 - Attending steering committee meetings, from one hour a week to one hour a month.
 - Reviewing the output from the working groups before publication.
 - Taking part in task forces created by the steering committee to investigate issues and advise courses of action. 

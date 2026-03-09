@@ -83,7 +83,7 @@ const defaultSections: FooterSection[] = [
 
 const {
   logoSrc = "/assets/footer-logo.svg",
-  description = "The Green Software Foundation is a non-profit under the Linux Foundation with a mission to create a trusted ecosystem of people, standards, tooling, and best practices for green software.",
+  description = "The Brown Web Foundation is a non-profit under the Linux Foundation with a mission to create a trusted ecosystem of people, standards, tooling, and best practices for green software.",
   footerNote,
   sections = defaultSections,
 } = Astro.props;
@@ -97,7 +97,7 @@ const {
       <div class="flex w-full flex-col gap-4">
         <img src={logoSrc} class="w-20" />
         <p class="pt-4 text-xs font-normal text-white/50">
-          Copyright &copy; {year} Green Software Foundation. All rights reserved.
+          Copyright &copy; {year} Brown Web Foundation. All rights reserved.
         </p>
         {description && (
           <p class="text-xs font-normal text-white/50">{description}</p>

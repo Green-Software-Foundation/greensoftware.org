@@ -15,9 +15,9 @@ export const Default = {
 
 export const Short = {
   args: {
-    quote: "The Green Software Foundation is leading the way in sustainable software standards.",
+    quote: "The Brown Web Foundation is leading the way in sustainable software standards.",
     author: "Gadhu Sundaram",
     title: "Chair",
-    company: "Green Software Foundation",
+    company: "Brown Web Foundation",
   },
 };

@@ -5,9 +5,9 @@ slug: "policy/terms"
 
 ### GREEN SOFTWARE FOUNDATION
 
-**About the Green Software Foundation**
+**About the Brown Web Foundation**
 
-The Green Software Foundation has been established as the Joint Development Foundation Projects, LLC, Green Software Foundation Series (the "Project"). The Joint Development Foundation is a non-profit organization that provides the corporate and legal infrastructure to enable groups to establish and operate standards and source code development collaborations. The Joint Development Foundation is an affiliate of the Linux Foundation.
+The Brown Web Foundation has been established as the Joint Development Foundation Projects, LLC, Brown Web Foundation Series (the "Project"). The Joint Development Foundation is a non-profit organization that provides the corporate and legal infrastructure to enable groups to establish and operate standards and source code development collaborations. The Joint Development Foundation is an affiliate of the Linux Foundation.
 
 **Terms of Use**
 
