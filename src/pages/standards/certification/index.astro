@@ -6,14 +6,15 @@ import Navbar from "@/components/navbar.astro";
 import Hero from "@/components/hero.astro";
 import TextWithImage from "@/components/text-with-image.astro";
 import FeatureGrid from "@/components/feature-grid.astro";
+import TextBlock from "@/components/text-block.astro";
 import CTABanner from "@/components/cta-banner.astro";
 import Breadcrumb from "@/components/breadcrumb.astro";
 import Footer from "@/components/footer.astro";
 ---
 
 <Layout
-  title="SCI Certification — Green Software Foundation"
-  description="A membership benefit allowing GSF members to obtain SCI certification for their software products — demonstrating commitment to measuring and disclosing software carbon intensity."
+  title="SCI Self-Certification — Green Software Foundation"
+  description="Self-certify that your Software Carbon Intensity (SCI) calculation conforms to ISO/IEC 21031:2024. Free, open to any organisation, with public disclosure and community review."
 >
   <Navbar
     logoSrc="/assets/gsf-logo-full.svg"
@@ -34,11 +35,11 @@ import Footer from "@/components/footer.astro";
 
   <!-- Hero -->
   <Hero
-    heading="SCI Certification"
+    heading="SCI Self-Certification"
     headingAccent="Programme"
-    body="A membership benefit for product-level SCI disclosure. GSF members can certify that their software product's carbon intensity has been measured and disclosed following GSF guidelines."
+    body="Declare that your Software Carbon Intensity (SCI) calculation conforms to ISO/IEC 21031:2024. GSF verifies your disclosure is complete and detailed, then publishes it for community review. Free and open to any organisation."
     ctas={[
-      { text: "Apply now", variant: "primary", href: "mailto:help@greensoftware.foundation?subject=SCI%20Certification%20Application" },
+      { text: "Apply now", variant: "primary", href: "mailto:sci-certification@greensoftware.foundation?subject=SCI%20Self-Certification%20Submission" },
       { text: "Learn about SCI", variant: "outline", href: "/standards/sci/" },
     ]}
     imageSrc="/assets/ready.svg"
@@ -46,73 +47,210 @@ import Footer from "@/components/footer.astro";
     bgClass="bg-accent-lightest-2"
   />
 
-  <!-- What we certify -->
+  <!-- What this programme is -->
   <TextWithImage
-    badge="WHAT WE CERTIFY"
-    heading="The process, not"
-    headingAccent="the score"
-    body="GSF certifies that an organisation has completed and disclosed an SCI calculation following GSF guidelines. We verify that the process was followed and the results disclosed — responsibility for the accuracy of the score sits with the applicant through self-attestation. This keeps the programme lightweight and accessible while still providing a meaningful, credible signal to stakeholders."
+    badge="WHAT THIS PROGRAMME IS"
+    heading="Self-certification, not"
+    headingAccent="third-party audit"
+    body="You self-certify that your SCI calculation conforms to ISO/IEC 21031:2024. GSF then checks that your disclosure is complete and detailed enough for the public to understand and evaluate your calculation. If it is, GSF issues a certificate and publishes your submission. GSF does not validate the accuracy of your numbers, assess your methodology, or confirm conformity — that responsibility is yours. Your published disclosure enables community review, which is the validation layer of the programme."
     ctaText="Read the SCI specification →"
     ctaHref="/standards/sci/"
     imageSrc="/assets/why-feat-1.svg"
-    imageAlt="Certification process illustration"
+    imageAlt="Self-certification illustration"
     bgClass="bg-white"
     reversed
   />
 
-  <!-- Members only -->
+  <!-- Who can apply -->
   <TextWithImage
-    badge="ELIGIBILITY"
-    heading="A benefit of"
-    headingAccent="GSF membership"
-    body="SCI Certification is available to GSF members only. Membership positions certification as a tangible benefit of joining the foundation — and ensures applicants are already committed to the green software mission. If your organisation isn't a member yet, explore membership to get started."
-    ctaText="Explore membership →"
-    ctaHref="/membership/"
+    badge="WHO CAN APPLY"
+    heading="Open to"
+    headingAccent="any organisation"
+    body="Any individual or organisation that has calculated an SCI score according to ISO/IEC 21031:2024 can apply. There are no restrictions on organisation size, type, location, software domain, or calculation methodology. The programme is completely free — there is no fee to apply, and no fee to receive or renew a certificate."
+    ctaText="Email us to apply →"
+    ctaHref="mailto:sci-certification@greensoftware.foundation?subject=SCI%20Self-Certification%20Submission"
     imageSrc="/assets/about-gsf-illustration.svg"
-    imageAlt="Membership illustration"
+    imageAlt="Open to all illustration"
   />
 
   <!-- How it works -->
   <FeatureGrid
-    heading="How *certification works*"
-    body="The programme is designed to be straightforward. Certificates are valid for one year, after which resubmission is required."
+    heading="How the *process works*"
+    body="The review process takes 10–15 business days. Certificates are valid for one year."
     variant="bordered"
     columns={3}
     features={[
       {
-        title: "1. Self-attestation questionnaire",
-        description: "The applicant completes a questionnaire confirming their SCI methodology, scope, and data sources. Liability for accuracy sits with the applicant.",
+        title: "1. Submit by email",
+        description: "Email your submission to sci-certification@greensoftware.foundation. Use the submission template as your starting point — it is structured to match the requirements exactly.",
       },
       {
-        title: "2. Completeness review",
-        description: "GSF staff check that the submission is complete. An AI-assisted filter may be used to speed up this step.",
+        title: "2. Acknowledgement",
+        description: "You receive an acknowledgement with a tracking number within 1 business day.",
       },
       {
-        title: "3. Working group review",
-        description: "The Software Standards Working Group has the opportunity to review the submission and raise any objections.",
+        title: "3. Review",
+        description: "A reviewer checks your submission against a 27-item checklist. The standard is: could a knowledgeable practitioner understand and evaluate your calculation?",
       },
       {
-        title: "4. Sign-off",
-        description: "The GSF Executive Director or Chair reviews the outcome of the working group review and signs the certificate.",
+        title: "4. Decision",
+        description: "Approved — certificate issued and disclosure published. Revision requested — you receive specific feedback on what to fix and can resubmit. Rejected — reserved only for bad faith.",
       },
       {
         title: "5. Publication",
-        description: "The certificate is issued and published at the agreed disclosure level — covering at minimum the product name, organisation, date, and signatory.",
+        description: "Your submission is published as-is to the public sci-certifications GitHub repository with your contact email redacted. Your submission is your public disclosure.",
       },
       {
         title: "6. Annual renewal",
-        description: "Certificates are valid for one year. Organisations must resubmit annually to maintain their certification status.",
+        description: "Certificates are valid for one year. You receive a renewal reminder 30 days before expiry. Renewal requires a full new submission.",
       },
+    ]}
+    bgClass="bg-accent-lightest-2"
+  />
+
+  <!-- What you must submit -->
+  <FeatureGrid
+    heading="What you *must submit*"
+    body="Your submission must cover all of the following areas. If any item is missing or too vague, your submission will be returned for revision. Use the submission email template as your starting point."
+    variant="bordered"
+    columns={2}
+    features={[
+      {
+        title: "Applicant & software details",
+        description: "Organisation name, contact details, software name and version, and a brief description of the software.",
+      },
+      {
+        title: "Measurement period & SCI score",
+        description: "Start and end dates, and the SCI score as a numeric value with units including the functional unit (e.g. 349.63 gCO2eq per 1,000 API requests).",
+      },
+      {
+        title: "Software boundary",
+        description: "Included and excluded components, each with system-specific rationale. Generic exclusion reasons like 'out of scope' are not sufficient.",
+      },
+      {
+        title: "Functional unit (R)",
+        description: "The unit chosen, why it connects to how your software scales, how you counted it, and the total units in the measurement period.",
+      },
+      {
+        title: "Energy (E)",
+        description: "Total energy in kWh with a per-component breakdown showing energy value, calculation method, and data source. A single total with no breakdown is not sufficient.",
+      },
+      {
+        title: "Carbon intensity (I)",
+        description: "Value in gCO2eq/kWh, locations, approach (location- or market-based), and data source named with year. Multi-region requires per-region breakdown.",
+      },
+      {
+        title: "Embodied emissions (M)",
+        description: "Total M value or a specific justification if M = 0. If M > 0, include per-component breakdown with embodied emissions, lifespan, allocation, and data sources.",
+      },
+      {
+        title: "Methodology & assumptions",
+        description: "Overall approach (measurement, calculation, or hybrid), at least one specific assumption with justification, and at least one specific limitation.",
+      },
+      {
+        title: "Full SCI calculation",
+        description: "Show the formula with your actual numbers so arithmetic can be verified: O = E × I, then SCI = (O + M) / R.",
+      },
+      {
+        title: "Signed attestation",
+        description: "A 10-point attestation covering your declaration of ISO/IEC 21031:2024 conformity, your responsibilities, GSF's limited role, badge usage, and consent to public disclosure.",
+      },
+    ]}
+    bgClass="bg-white"
+  />
+
+  <!-- How submissions are evaluated -->
+  <TextWithImage
+    badge="EVALUATION"
+    heading="A 27-item"
+    headingAccent="checklist"
+    body="Your reviewer works through a 27-item checklist in a single pass. Each item is marked present and adequate, missing, or insufficient. All items must pass. The reviewer's question for every item: could a knowledgeable practitioner reading this disclosure understand and evaluate this part of the calculation? The bar is 'adequate', not 'perfect' — you need enough detail that a practitioner can see where your numbers come from."
+    ctaText="Read the SCI specification →"
+    ctaHref="/standards/sci/"
+    imageSrc="/assets/why-feat-1.svg"
+    imageAlt="Evaluation checklist illustration"
+    bgClass="bg-accent-lightest-2"
+    reversed
+  />
+
+  <!-- The three outcomes -->
+  <FeatureGrid
+    heading="The three *outcomes*"
+    body="Every submission results in one of three outcomes."
+    variant="bordered"
+    columns={3}
+    features={[
+      {
+        title: "Approved",
+        description: "All checklist items pass. GSF issues a certificate (valid 1 year), publishes your disclosure to GitHub, and sends you badge assets and your certificate link.",
+      },
+      {
+        title: "Revision requested",
+        description: "One or more items are missing or insufficient. You receive specific feedback identifying which items need attention and what to add. You may resubmit as many times as needed.",
+      },
+      {
+        title: "Rejected",
+        description: "Reserved exclusively for bad faith — fabricated data, obvious fraud, or persistent refusal to engage. Requires agreement from 2+ reviewers. Incomplete submissions always receive revision requests, never rejection.",
+      },
+    ]}
+    bgClass="bg-white"
+  />
+
+  <!-- After approval -->
+  <FeatureGrid
+    heading="After *approval*"
+    body="When your submission is approved, you receive a certificate, badge assets, and a public disclosure page."
+    variant="bordered"
+    columns={2}
+    features={[
+      {
+        title: "Certificate & badge",
+        description: "You receive a certificate with a unique ID (GSF-SCI-YYYY-NNNNN), plus downloadable badge assets in SVG and PNG for your website, README, and marketing materials.",
+      },
+      {
+        title: "Public disclosure",
+        description: "Your submission is published as-is to the sci-certifications GitHub repository with your contact email redacted and certificate metadata added.",
+      },
+      {
+        title: "Badge usage rules",
+        description: "You must always include the 'self-certified' qualifier. Never claim 'ISO certified' or 'independently verified'. The badge must link to your certificate, and must be removed when expired.",
+      },
+      {
+        title: "Renewal",
+        description: "Certificates are valid for 1 year. You will receive a reminder 30 days before expiry. Renewal requires a full new submission — it is not an abbreviated review.",
+      },
+    ]}
+    bgClass="bg-accent-lightest-2"
+  />
+
+  <!-- Community challenge -->
+  <TextWithImage
+    badge="ACCOUNTABILITY"
+    heading="Community"
+    headingAccent="challenge process"
+    body="Because this is self-certification, the community serves as the validation layer. Any party may challenge a certificate if they believe the calculation is non-conformant with ISO/IEC 21031:2024. GSF reviews the challenge, and the certificate holder has 30 days to respond. Outcomes range from dismissal to certificate revocation depending on severity. If your submission is rejected or you disagree with a review decision, a three-phase appeals process is available."
+    imageSrc="/assets/about-gsf-illustration.svg"
+    imageAlt="Community accountability illustration"
+    bgClass="bg-white"
+    reversed
+  />
+
+  <!-- How to submit -->
+  <TextBlock
+    heading="How to *submit*"
+    body="Email your submission to sci-certification@greensoftware.foundation with the subject line: SCI Self-Certification Submission — [Your Organisation Name] — [Your Software Name]. Accepted formats: PDF, Word, Markdown, or plain text. Use the submission email template as your starting point."
+    bodyExtra={[
+      "Your submission becomes your public disclosure. If approved, it is published as-is to the public GitHub repository with your contact email redacted. Write your submission knowing it will be the public-facing document.",
     ]}
     bgClass="bg-accent-lightest-2"
   />
 
   <!-- CTA -->
   <CTABanner
-    heading="Interested in SCI Certification?"
-    body="Get in touch to learn more about applying, eligibility, and what's required. We'll walk you through the process."
+    heading="Ready to self-certify?"
+    body="Email your submission to get started. The programme is free and open to any organisation with an SCI calculation conforming to ISO/IEC 21031:2024."
     ctaText="Email us to apply"
-    ctaHref="mailto:help@greensoftware.foundation?subject=SCI%20Certification%20Application"
+    ctaHref="mailto:sci-certification@greensoftware.foundation?subject=SCI%20Self-Certification%20Submission"
   />
 
   <Footer />
