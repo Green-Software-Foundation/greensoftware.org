@@ -1,0 +1,298 @@
+---
+import Layout from "@/layouts/showcase.astro";
+import { navItems } from "@/lib/nav-items";
+
+import Navbar from "@/components/navbar.astro";
+import Hero from "@/components/hero.astro";
+import LogoMarquee from "@/components/logo-marquee.astro";
+import CTACard from "@/components/cta-card.astro";
+import FeatureGrid from "@/components/feature-grid.astro";
+import TextWithImage from "@/components/text-with-image.astro";
+import CardGrid from "@/components/card-grid.astro";
+import TeamGrid from "@/components/team-grid.astro";
+import CTABanner from "@/components/cta-banner.astro";
+import Breadcrumb from "@/components/breadcrumb.astro";
+import Footer from "@/components/footer.astro";
+
+import projects from "@/data/projects.json";
+
+const sweProject = projects.find(p => p.slug === "swe");
+const parentWg = projects.find(p => p.name === sweProject?.parent);
+---
+
+<Layout
+  title="SWE — Software Water Efficiency | Green Software Foundation"
+  description="A methodology for calculating the water consumption of software systems. Measure, compare, and reduce the water your software causes to be used."
+>
+  <Navbar
+    logoSrc="/assets/gsf-logo-full.svg"
+    logoAlt="Green Software Foundation"
+    logoHref="/"
+    topBar="none"
+    showSearch
+    navItems={navItems}
+    ctaText="Discuss your challenges"
+    ctaHref="/membership/"
+  />
+
+  <Breadcrumb items={[
+    { label: "Home", href: "/" },
+    { label: "Standards", href: "/standards/" },
+    { label: "SWE" },
+  ]} />
+
+  <!-- Hero -->
+  <Hero
+    badges={[
+      ...(parentWg ? [{ text: `A ${parentWg.name} Project` }] : []),
+      ...(sweProject?.lifecycle ? [{ text: sweProject.lifecycle, variant: "dark" as const }] : []),
+    ]}
+    heading="Measure the Water Cost of"
+    headingAccent="Your Software"
+    body="Every software system consumes water through the hardware it runs on. The Software Water Efficiency (SWE) specification provides a methodology for calculating the water consumption rate of a software system — a score where lower is better and reaching zero is the goal."
+    ctas={[
+      { text: "View on GitHub", variant: "primary", href: "https://github.com/Green-Software-Foundation/software-water-efficiency" },
+    ]}
+    imageSrc="/assets/standards/sci/hero-illustration.svg"
+    imageAlt="SWE illustration"
+    bgClass="bg-accent-lightest-2"
+    id="overview"
+  />
+
+  <!-- Logo Marquee -->
+  <LogoMarquee
+    heading="Developed within the Software Standards Working Group"
+  />
+
+  <!-- What is SWE? -->
+  <CTACard
+    heading="What is SWE?"
+    body="SWE is a rate — water consumption per one functional unit of work, measured in litres. It gives developers and organisations a clear, comparable number that captures how much water their software causes to be used. Reducing an SWE score is only possible through actions that genuinely reduce water consumption: modifying software to use less hardware, shifting computation to facilities with more efficient cooling, or using infrastructure that avoids evaporative water loss entirely."
+    imageSrc="/assets/standards/sci/why-wdpc-feat-1.svg"
+    imageAlt="What is SWE illustration"
+  />
+
+  <!-- Why Water Matters -->
+  <section class="py-8 md:py-10 bg-accent-lightest-2">
+    <div class="container">
+      <div class="mx-auto max-w-5xl text-center">
+        <h2 class="text-2xl font-semibold md:text-3xl lg:text-4xl">
+          Why <span class="font-bold text-primary">Water Efficiency</span> Matters
+        </h2>
+        <p class="mt-6 text-lg leading-relaxed md:text-xl">
+          Data centres cool their hardware using water — typically through evaporative cooling towers that consume hundreds of millions of litres per facility each year. As AI workloads grow denser and more continuous, so does their water demand. The industry currently has no standardised way to attribute water consumption back to the software that causes it. SWE closes this gap: by pairing water consumption with a functional unit, it enables teams to measure efficiency, set targets, and make evidence-based decisions about infrastructure choices.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- The SWE Formula -->
+  <section class="py-12 md:py-16 lg:py-20 bg-accent-lighter/30">
+    <div class="container">
+      <div class="mx-auto max-w-4xl text-center">
+        <h2 class="mb-6 text-2xl font-semibold md:text-3xl lg:text-4xl">
+          The SWE Formula
+        </h2>
+        <p class="text-lg md:text-xl">
+          SWE calculates water consumption per functional unit. The formula uses WUE (Water Usage Effectiveness) to convert energy consumption into water — accounting for the cooling overhead of the facility where the software runs.
+        </p>
+
+        <div class="my-10 rounded-xl bg-white p-8 shadow-sm md:my-12">
+          <p class="text-3xl font-bold text-primary md:text-4xl lg:text-5xl font-mono">
+            SWE = W per R
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-6 text-left md:grid-cols-2">
+          <div class="rounded-xl border bg-white p-5">
+            <h3 class="font-bold text-primary text-lg">W — Water</h3>
+            <p class="mt-2 text-sm text-gray-darker">The total water the software causes to be consumed, calculated from the energy consumption of each component multiplied by the WUE of its facility. Measured in litres (L).</p>
+          </div>
+          <div class="rounded-xl border bg-white p-5">
+            <h3 class="font-bold text-primary text-lg">R — Functional Unit</h3>
+            <p class="mt-2 text-sm text-gray-darker">A quantified performance characteristic that describes how the application scales — per API call, per user, per transaction, per device, or per data volume.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Software Boundary -->
+  <FeatureGrid
+    heading="The Software *Boundary*"
+    body="The first step in generating an SWE score is deciding what to include in the measurement. The boundary should include all components whose energy consumption — and therefore water consumption — the software is responsible for."
+    columns={3}
+    variant="bordered"
+    features={[
+      {
+        icon: "/assets/standards/sci/shape-icon-1.svg",
+        title: "Compute Resources",
+        description: "All computational hardware — processors, GPUs, TPUs, AI accelerators — performing work within the software boundary.",
+      },
+      {
+        icon: "/assets/standards/sci/shape-icon-2.svg",
+        title: "Host Systems & Idle Capacity",
+        description: "Energy consumed by host machines, memory, and reserved capacity that is idle but provisioned for availability and failover.",
+      },
+      {
+        icon: "/assets/standards/sci/shape-icon-3.svg",
+        title: "Facility Cooling Overhead",
+        description: "Cooling water consumption captured via WUE (Water Usage Effectiveness), plus the energy overhead of cooling and power conversion systems.",
+      },
+    ]}
+    bgClass="bg-accent-lightest-2"
+  />
+
+  <!-- Sustainability Actions -->
+  <TextWithImage
+    heading="Software Water Reduction"
+    headingAccent="Actions"
+    headingStyle="light"
+    body="All actions that reduce an SWE score fit into two categories: reducing energy consumption (which reduces the water needed to cool that energy draw) and choosing infrastructure with better WUE (facilities that use less water per unit of energy). Actions include algorithmic efficiency improvements, right-sizing workloads, shifting to liquid-cooled or air-cooled facilities, scheduling workloads to cooler times of day, and selecting data centre regions with better water efficiency ratings."
+    imageSrc="/assets/standards/sci/why-wdpc-feat-2.svg"
+    imageAlt="Water reduction actions illustration"
+    reversed
+    bgClass="bg-accent-lightest-2"
+  />
+
+  <!-- Quantification Methods -->
+  <FeatureGrid
+    heading="Quantification *Methods*"
+    body="There are three approaches to quantifying water consumption for a software boundary. Each component can use whichever approach is most appropriate given available data."
+    columns={3}
+    variant="cards"
+    features={[
+      {
+        icon: "/assets/standards/sci/co2-icon.svg",
+        title: "Measurement",
+        description: "Real-world water data from facility water meters, cloud provider water efficiency APIs, or data centre operator disclosures — combined with WUE values per facility.",
+      },
+      {
+        icon: "/assets/standards/sci/cost-icon.svg",
+        title: "Calculation",
+        description: "Modelled water consumption using hardware energy estimates (TDP, utilisation curves) combined with WUE coefficients published by facility operators or industry bodies such as The Green Grid.",
+      },
+      {
+        icon: "/assets/standards/sci/grid-icon.svg",
+        title: "Coefficients",
+        description: "Published WUE values from cloud providers per region, industry-standard water coefficients for hardware categories, or third-party SWE scores for subcomponents and dependencies.",
+      },
+    ]}
+    bgClass="bg-accent-lightest-2"
+  />
+
+  <!-- The Growing Water Gap -->
+  <FeatureGrid
+    heading="The Growing *Water Gap*"
+    body="AI and cloud workloads are creating an unprecedented water challenge with no consistent way to attribute consumption back to the software causing it."
+    columns={2}
+    variant="bordered"
+    features={[
+      {
+        icon: "/assets/standards/sci/shape-icon-1.svg",
+        title: "No Software Attribution",
+        description: "WUE measures data centre efficiency, but doesn't tell you how much water your application specifically consumes — or how to reduce it through software decisions.",
+      },
+      {
+        icon: "/assets/standards/sci/shape-icon-2.svg",
+        title: "AI Is Accelerating Demand",
+        description: "A single large language model training run can consume millions of litres of water. The industry needs a methodology to measure and compare these workloads.",
+      },
+      {
+        icon: "/assets/standards/sci/shape-icon-3.svg",
+        title: "Water Stress Is Localised",
+        description: "Where a data centre is located matters enormously — facilities in water-stressed regions cause far more harm per litre consumed. SWE makes location a visible variable.",
+      },
+      {
+        icon: "/assets/standards/sci/shape-icon-4.svg",
+        title: "Totals, Not Rates",
+        description: "Existing disclosures report total water withdrawn rather than consumption per unit of work, making efficiency comparisons between applications impossible.",
+      },
+    ]}
+    bgClass="bg-accent-lightest-2"
+  />
+
+  <!-- Relationship to SCI and SEE -->
+  <CTACard
+    heading="How SWE Relates to SCI and SEE"
+    body="The SCI specification measures carbon intensity as SCI = (E × I + M) per R. SEE focuses on energy alone as SEE = E per R. SWE adds the water dimension: SWE = W per R, where W is derived from energy consumption and facility WUE values. The three specifications are complementary — they measure different environmental dimensions of the same underlying software behaviour. A software system that improves its SEE score will typically improve its SWE score too, because using less energy means less heat to dissipate and less cooling water required."
+    ctaText="Learn about SCI"
+    ctaHref="/standards/sci/"
+    imageSrc="/assets/standards/sci/why-wdpc-feat-3.svg"
+    imageAlt="SCI, SEE and SWE relationship"
+  />
+
+  <!-- Mission Card -->
+  <section class="py-8 md:py-12 lg:py-16">
+    <div class="container">
+      <div class="relative rounded-4xl border-3 border-accent-lighter px-12 py-12 backdrop-blur-sm md:px-20 md:py-16">
+        <div class="absolute -top-6 left-1/2 -translate-x-1/2 transform rounded-full bg-accent-lightest-2">
+          <img src="/assets/standards/sci/up.svg" class="h-12 w-16 md:h-14 md:w-24" />
+        </div>
+        <div class="text-center">
+          <p class="text-lg font-medium text-primary-dark italic md:text-xl">
+            Reducing an SWE score is only possible through actions that reduce water consumption — by modifying software to use less hardware, shifting to more efficient infrastructure, or choosing facilities that require less cooling water.
+          </p>
+        </div>
+        <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 transform rounded-full bg-accent-lightest-2">
+          <img src="/assets/standards/sci/up.svg" class="h-12 w-16 md:h-14 md:w-24 rotate-180" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team (driven from projects.json) -->
+  <TeamGrid
+    heading="Project *Leadership*"
+    body={parentWg ? `Part of the ${parentWg.name}` : ""}
+    columns={sweProject?.leads?.length === 2 ? 2 : 3}
+    highlighted={[]}
+    members={(sweProject?.leads ?? []).map(lead => ({
+      fullName: lead.fullName,
+      role: lead.roleLabel,
+    }))}
+    bgClass="bg-white"
+  />
+
+  <!-- Get Involved -->
+  <CardGrid
+    heading="Get Involved"
+    body="Help Shape Software Water Efficiency"
+    columns={3}
+    cards={[
+      {
+        icon: "/assets/standards/sci/resource-spec-icon.svg",
+        title: "View the Draft Specification",
+        description: "Follow the development of the SWE specification on GitHub",
+        ctaText: "View on GitHub",
+        ctaHref: "https://github.com/Green-Software-Foundation/software-water-efficiency",
+        featured: true,
+      },
+      {
+        icon: "/assets/standards/sci/resource-discuss-icon.svg",
+        title: "Join the Software Standards Working Group",
+        description: "Collaborate with industry experts shaping this specification (members only)",
+        ctaText: "Join the WG",
+        ctaHref: "https://directory.greensoftware.foundation/working-groups/software-standards-working-group/",
+      },
+      {
+        icon: "/assets/standards/soft/join-gsf-icon.svg",
+        title: "Become a GSF Member",
+        description: "Join the foundation to participate in standards development",
+        ctaText: "Get in touch",
+        ctaHref: "https://greensoftware.foundation/membership",
+      },
+    ]}
+    bgClass="bg-accent-lightest-2"
+  />
+
+  <!-- CTA -->
+  <CTABanner
+    heading="Water efficiency is the next frontier of sustainable software"
+    body="SWE provides a clear, comparable score for the water consumption of any software system. Whether you're optimising cloud workloads, AI pipelines, or edge applications, your expertise can help shape how the industry measures and reduces software water consumption."
+    ctaText="View the Draft Specification"
+    ctaHref="https://github.com/Green-Software-Foundation/software-water-efficiency"
+  />
+
+  <Footer />
+</Layout>

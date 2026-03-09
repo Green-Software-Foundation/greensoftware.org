@@ -31,6 +31,7 @@ export const navItems = [
           { href: "/standards/soft/", label: "SOFT", description: "Framework for organisational transformation" /* iconSrc: pi("soft"), icon: "workflow" */ },
           { href: "/standards/rtc/", label: "RTC", description: "Real-time energy and carbon for cloud providers" /* iconSrc: pi("real-time-cloud"), icon: "bar-chart" */ },
           { href: "/standards/see/", label: "SEE", description: "Software Energy Efficiency" /* iconSrc: pi("see"), icon: "zap" */ },
+          { href: "/standards/swe/", label: "SWE", description: "Software Water Efficiency" /* iconSrc: pi("swe"), icon: "droplets" */ },
         ],
       },
       {
