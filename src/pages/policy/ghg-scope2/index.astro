@@ -1,0 +1,255 @@
+---
+import Layout from "@/layouts/showcase.astro";
+import { navItems } from "@/lib/nav-items";
+
+import Navbar from "@/components/navbar.astro";
+import Hero from "@/components/hero.astro";
+import Breadcrumb from "@/components/breadcrumb.astro";
+import Footer from "@/components/footer.astro";
+---
+
+<Layout
+  title="GHG Protocol Scope 2 — Consultation Response — Green Software Foundation"
+  description="The Green Software Foundation's formal response to the GHG Protocol's Scope 2 Public Consultation, advocating for granular, location-based emissions accounting that enables carbon-aware software development."
+>
+  <Navbar
+    logoSrc="/assets/gsf-logo-full.svg"
+    logoAlt="Green Software Foundation"
+    logoHref="/"
+    topBar="none"
+    showSearch
+    navItems={navItems}
+    ctaText="Discuss your challenges"
+    ctaHref="/membership/"
+  />
+
+  <Breadcrumb
+    items={[
+      { label: "Home", href: "/" },
+      { label: "Policy & Research", href: "/policy/" },
+      { label: "GHG Protocol Scope 2 Consultation Response" },
+    ]}
+  />
+
+  <!-- Hero -->
+  <Hero
+    heading="GHG Protocol"
+    headingAccent="Scope 2 Consultation"
+    body="The Green Software Foundation submitted formal comments to the GHG Protocol's Scope 2 Public Consultation, advocating for granular, time- and location-sensitive emissions accounting that empowers software engineers to take meaningful climate action."
+    bgClass="bg-accent-lightest-2"
+    imageSrc="/assets/hero-illustration.svg"
+    imageAlt="GHG Protocol Scope 2 Consultation"
+  />
+
+  <!-- What is the GHG Protocol Scope 2 Consultation -->
+  <section class="bg-white py-16 md:py-20">
+    <div class="container">
+      <div class="mx-auto max-w-3xl">
+        <h2 class="text-2xl font-extrabold leading-tight text-primary-dark md:text-3xl">
+          What is the <span class="text-primary">GHG Protocol Scope 2</span> Consultation?
+        </h2>
+        <div class="mt-6 space-y-4 text-base leading-relaxed text-primary-dark/80">
+          <p>
+            The <strong>GHG Protocol</strong> is the world's most widely used greenhouse gas accounting standard. Its <strong>Scope 2 guidance</strong> defines how organisations should account for emissions from purchased electricity — a category that directly covers the energy consumed by software systems, data centres, and digital infrastructure.
+          </p>
+          <p>
+            In 2024–2025, the GHG Protocol opened a <strong>public consultation on proposed revisions</strong> to the Scope 2 guidance. These revisions have significant implications for how software carbon intensity is measured and reported, particularly around:
+          </p>
+          <ul class="ml-6 list-disc space-y-2">
+            <li><strong>Temporal granularity</strong> — whether annual averages or hourly data should be used</li>
+            <li><strong>Spatial granularity</strong> — whether emissions factors should reflect the local grid mix or broader regional averages</li>
+            <li><strong>Data accessibility</strong> — whether emissions factor data should be publicly available and free to use</li>
+            <li><strong>Physical connection</strong> — how to define which electricity sources are attributable to an organisation's operations</li>
+          </ul>
+          <p>
+            These decisions shape whether software practitioners can make <em>meaningful, actionable</em> changes to reduce emissions — or whether they're left with accounting figures that obscure the real-time impact of their choices.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why this matters for software -->
+  <section class="bg-accent-lightest-2 py-16 md:py-20">
+    <div class="container">
+      <div class="mx-auto max-w-3xl">
+        <h2 class="text-2xl font-extrabold leading-tight text-primary-dark md:text-3xl">
+          Why this matters for <span class="text-primary">software</span>
+        </h2>
+        <div class="mt-6 space-y-4 text-base leading-relaxed text-primary-dark/80">
+          <p>
+            Software systems are significant consumers of electricity. Unlike physical infrastructure, software workloads can often be <strong>shifted in time and location</strong> to take advantage of cleaner energy — a practice known as <strong>carbon-aware computing</strong>.
+          </p>
+          <p>
+            Carbon-aware computing is one of the three core emissions-reduction strategies in the GSF's <strong>Software Carbon Intensity (SCI)</strong> standard — alongside energy efficiency and hardware efficiency. It works by scheduling computational tasks to run when and where the electricity grid is powered by lower-carbon sources.
+          </p>
+          <p>
+            But this only works if carbon accounting standards provide <strong>granular, real-time data</strong>. Annual averages obscure the variation between a grid running on wind at 2am and the same grid running on gas at peak demand. Broad geographic averages hide the difference between a data centre in a region with abundant renewables and one in a coal-heavy area.
+          </p>
+          <p>
+            The GHG Protocol Scope 2 revisions determine whether the standards infrastructure exists to support this kind of informed, impactful software decision-making.
+          </p>
+        </div>
+
+        <div class="mt-10 grid gap-4 sm:grid-cols-3">
+          {[
+            {
+              label: "Hourly granularity",
+              description: "Annual averages don't enable load shifting. Hourly or sub-hourly data shows when grids are cleanest.",
+            },
+            {
+              label: "Location-based data",
+              description: "Broad geographic averages hide regional grid variation. Local data reflects the actual grid mix at the moment of consumption.",
+            },
+            {
+              label: "Publicly available",
+              description: "Free, accessible emissions factor data lowers barriers for all organisations — not just those with large compliance teams.",
+            },
+          ].map(({ label, description }) => (
+            <div class="rounded-xl border border-border bg-white p-5">
+              <h3 class="text-sm font-bold text-primary">{label}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-primary-dark/80">{description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GSF's Response -->
+  <section class="bg-white py-16 md:py-20">
+    <div class="container">
+      <div class="mx-auto max-w-3xl">
+        <h2 class="text-2xl font-extrabold leading-tight text-primary-dark md:text-3xl">
+          The GSF's <span class="text-primary">Response</span>
+        </h2>
+        <p class="mt-4 text-base leading-relaxed text-primary-dark/80">
+          The GSF's Policy Working Group, led by Henry Richardson and Ryan Sholin, submitted a formal response to the consultation. The response advocates for a Scope 2 standard that gives software practitioners the data quality they need to act.
+        </p>
+
+        <div class="mt-8 space-y-8">
+
+          <div class="rounded-xl border-l-4 border-primary bg-accent-lightest-2 p-6">
+            <h3 class="text-lg font-bold text-primary-dark">Physical Connection Requirement</h3>
+            <p class="mt-2 text-sm leading-relaxed text-primary-dark/80">
+              The GSF supports clarifying that Scope 2 emissions should come from electricity "physically connected to the reporter's value chain." The emphasis on physical connection and deliverability is critical for ensuring that carbon accounting accurately reflects the grid mix actually experienced by the organisation — not a statistical average.
+            </p>
+          </div>
+
+          <div class="rounded-xl border-l-4 border-primary bg-accent-lightest-2 p-6">
+            <h3 class="text-lg font-bold text-primary-dark">Temporal Granularity — Hourly as the Standard</h3>
+            <p class="mt-2 text-sm leading-relaxed text-primary-dark/80">
+              The GSF advocates strongly for hourly or sub-hourly measurement. Annual average emissions data does not incentivise load shifting of software workloads to reduce emissions. Only high-frequency data enables the carbon-aware computing practices that distinguish genuinely sustainable software operations from paper compliance.
+            </p>
+          </div>
+
+          <div class="rounded-xl border-l-4 border-primary bg-accent-lightest-2 p-6">
+            <h3 class="text-lg font-bold text-primary-dark">Data Accessibility</h3>
+            <p class="mt-2 text-sm leading-relaxed text-primary-dark/80">
+              The GSF endorses the requirement that emission factors be "publicly available, free to use, and from a credible source." This supports data equity and lowers barriers for smaller organisations and individual software engineers who want to act on sustainability but lack enterprise compliance budgets.
+            </p>
+          </div>
+
+          <div class="rounded-xl border-l-4 border-primary bg-accent-lightest-2 p-6">
+            <h3 class="text-lg font-bold text-primary-dark">Credible Data Sources</h3>
+            <p class="mt-2 text-sm leading-relaxed text-primary-dark/80">
+              The response identifies system operators as particularly valuable credible sources: ENTSO-E for Europe, and entities like PJM and CAISO for North America. Third-party providers meeting minimum documentation standards — such as Electricity Maps and WattTime — are also endorsed. These providers already support the carbon-aware computing ecosystem.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Full Response & Submit Comments -->
+  <section class="bg-primary-darker py-16 md:py-20">
+    <div class="container">
+      <div class="mx-auto max-w-3xl text-center">
+        <h2 class="text-2xl font-extrabold leading-tight text-white md:text-3xl">
+          Read the full response & <span class="text-accent">contribute</span>
+        </h2>
+        <p class="mt-4 text-base leading-relaxed text-white/80">
+          The complete GSF response to the GHG Protocol Scope 2 Public Consultation is published in the GSF Policy &amp; Legislation Alignment White Paper Series on GitHub. You can read the full document, explore the repository, and submit comments or questions via GitHub Issues.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <a
+            href="https://github.com/Green-Software-Foundation/sci-policy-and-legislation-alignment-white-paper-series/blob/main/Response%20to%20GHG%20Protocol%20Scope%202%20Public%20Consultation.md"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-lg bg-accent px-6 py-3 text-base font-bold text-primary-darker transition-colors hover:bg-accent-light"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+            </svg>
+            Read the full response on GitHub
+          </a>
+          <a
+            href="https://github.com/Green-Software-Foundation/sci-policy-and-legislation-alignment-white-paper-series/issues"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-lg border-2 border-white/40 px-6 py-3 text-base font-bold text-white transition-colors hover:border-white/80 hover:bg-white/10"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            Submit comments via GitHub Issues
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="bg-accent-lightest-2 py-16 md:py-20">
+    <div class="container">
+      <div class="mx-auto max-w-3xl">
+        <h2 class="text-xl font-extrabold leading-tight text-primary-dark md:text-2xl">
+          Related resources
+        </h2>
+        <div class="mt-6 grid gap-4 sm:grid-cols-2">
+          <a
+            href="https://github.com/Green-Software-Foundation/sci-policy-and-legislation-alignment-white-paper-series"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group rounded-xl border border-border bg-white p-5 transition-colors hover:border-primary-lighter"
+          >
+            <h3 class="text-sm font-bold text-primary-dark group-hover:text-primary">Policy White Paper Series</h3>
+            <p class="mt-1 text-xs leading-relaxed text-gray-darker">The full GSF policy &amp; legislation alignment white paper series, including analysis of CSRD, the EU AI Act, and more.</p>
+            <span class="mt-3 inline-block text-xs font-semibold text-primary">View on GitHub &rarr;</span>
+          </a>
+          <a
+            href="https://policy-radar.greensoftware.foundation"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group rounded-xl border border-border bg-white p-5 transition-colors hover:border-primary-lighter"
+          >
+            <h3 class="text-sm font-bold text-primary-dark group-hover:text-primary">Policy Radar</h3>
+            <p class="mt-1 text-xs leading-relaxed text-gray-darker">Track emerging legislation, open consultations, and regulatory trends relevant to green software.</p>
+            <span class="mt-3 inline-block text-xs font-semibold text-primary">Browse the Radar &rarr;</span>
+          </a>
+          <a
+            href="/articles/en/why-the-gsf-is-participating-in-the-ghg-protocol-scope-2-consultation/"
+            class="group rounded-xl border border-border bg-white p-5 transition-colors hover:border-primary-lighter"
+          >
+            <h3 class="text-sm font-bold text-primary-dark group-hover:text-primary">Why GSF is participating in the Scope 2 Consultation</h3>
+            <p class="mt-1 text-xs leading-relaxed text-gray-darker">Background article on why the GHG Protocol Scope 2 revisions matter for the green software community.</p>
+            <span class="mt-3 inline-block text-xs font-semibold text-primary">Read the article &rarr;</span>
+          </a>
+          <a
+            href="/standards/sci/"
+            class="group rounded-xl border border-border bg-white p-5 transition-colors hover:border-primary-lighter"
+          >
+            <h3 class="text-sm font-bold text-primary-dark group-hover:text-primary">Software Carbon Intensity (SCI)</h3>
+            <p class="mt-1 text-xs leading-relaxed text-gray-darker">The GSF's ISO-certified metric for measuring software carbon intensity — the standard underpinning our policy advocacy.</p>
+            <span class="mt-3 inline-block text-xs font-semibold text-primary">Learn about SCI &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

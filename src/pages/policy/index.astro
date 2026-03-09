@@ -16,7 +16,6 @@ import { getCollection } from "astro:content";
 
 // ----- Leadership photos from team.json -----
 const chrisAdams = teamData.find((p: any) => p.fullName === "Chris Adams");
-const ayaSaed = teamData.find((p: any) => p.fullName === "Aya Saed");
 const josephCook = teamData.find((p: any) => p.fullName === "Joseph Cook");
 
 // ----- Articles tagged "policy" or "research" for the carousel -----
@@ -81,14 +80,13 @@ const policyArticles = allArticles
           <span class="font-bold text-primary">Leadership</span>
         </h2>
         <p class="mt-4 text-lg leading-relaxed text-primary-dark/80">
-          The Policy Working Group is co-chaired by Chris Adams and Aya Saed. Research is led by Joseph Cook.
+          The Policy Working Group is chaired by Chris Adams. Research is led by Joseph Cook.
         </p>
       </div>
 
-      <div class="mx-auto mt-10 grid max-w-4xl gap-8 md:grid-cols-3">
+      <div class="mx-auto mt-10 grid max-w-4xl gap-8 md:grid-cols-2 max-w-2xl">
         {[
-          { person: chrisAdams, name: "Chris Adams", role: "Co-Chair, Policy Working Group", org: "Green Web Foundation", title: "Director of Technology and Policy" },
-          { person: ayaSaed, name: "Aya Saed", role: "Co-Chair, Policy Working Group", org: "Scope3", title: "Director of AI Policy and Strategy" },
+          { person: chrisAdams, name: "Chris Adams", role: "Chair, Policy Working Group", org: "Green Web Foundation", title: "Director of Technology and Policy" },
           { person: josephCook, name: "Joseph Cook", role: "Head of Research", org: "Green Software Foundation", title: "Head of Research" },
         ].map(({ person, name, role, org, title }) => (
           <div class="flex flex-col items-center text-center">
@@ -143,7 +141,7 @@ const policyArticles = allArticles
           {
             title: "GHG Protocol Scope 2 Consultation",
             description: "Submitted a formal response advocating for time- and location-sensitive emissions data, arguing that annual averages and broad geographic boundaries don't give software engineers the granularity they need to act.",
-            link: "/articles/en/why-the-gsf-is-participating-in-the-ghg-protocol-scope-2-consultation/",
+            link: "/policy/ghg-scope2/",
             linkText: "Read our response",
           },
           {
@@ -318,10 +316,10 @@ const policyArticles = allArticles
     <div class="container">
       <div class="mx-auto max-w-3xl text-center">
         <blockquote class="text-xl font-medium leading-relaxed text-white/90 md:text-2xl">
-          &ldquo;One of the biggest challenges is the fragmentation of the policy landscape. There's no centralised authority setting energy standards for software, and existing regulatory frameworks often lag far behind the pace of digital innovation. But that's also where the opportunity lies: to influence upstream decisions — procurement, design, infrastructure — that shape emissions before they ever occur.&rdquo;
+          &ldquo;Carbon accounting should enable practitioners to reduce emissions through informed choices. Annual averages and broad geographic boundaries don't give software engineers the granularity they need to act — we need hourly, location-based data that reflects what's actually on the grid at the moment of consumption.&rdquo;
         </blockquote>
-        <p class="mt-6 text-base font-semibold text-accent">Aya Saed</p>
-        <p class="text-sm text-white/60">Director of AI Policy and Strategy, Scope3</p>
+        <p class="mt-6 text-base font-semibold text-accent">Chris Adams</p>
+        <p class="text-sm text-white/60">Chair, Policy Working Group — Green Web Foundation</p>
       </div>
     </div>
   </section>

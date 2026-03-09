@@ -26,8 +26,8 @@ export const navItems = [
         title: "Software",
         links: [
           { href: "/standards/sci/", label: "SCI", description: "ISO-certified metric for software carbon intensity" /* iconSrc: pi("sci"), icon: "target" */ },
-          { href: "/standards/sci-ai/", label: "SCI for AI", description: "Carbon measurement for AI systems" /* iconSrc: pi("sci-ai"), icon: "bot" */ },
-          { href: "/standards/sci-web/", label: "SCI for Web", description: "Carbon measurement for web applications" /* iconSrc: pi("sci-web"), icon: "globe" */ },
+          { href: "/standards/sci-ai/", label: "SCI for AI", description: "Carbon measurement for AI systems", indent: true /* iconSrc: pi("sci-ai"), icon: "bot" */ },
+          { href: "/standards/sci-web/", label: "SCI for Web", description: "Carbon measurement for web applications", indent: true /* iconSrc: pi("sci-web"), icon: "globe" */ },
           { href: "/standards/soft/", label: "SOFT", description: "Framework for organisational transformation" /* iconSrc: pi("soft"), icon: "workflow" */ },
           { href: "/standards/rtc/", label: "RTC", description: "Real-time energy and carbon for cloud providers" /* iconSrc: pi("real-time-cloud"), icon: "bar-chart" */ },
           { href: "/standards/see/", label: "SEE", description: "Software Energy Efficiency" /* iconSrc: pi("see"), icon: "zap" */ },
@@ -66,6 +66,8 @@ export const navItems = [
         links: [
           { href: "https://policy-radar.greensoftware.foundation", label: "Policy Radar", description: "Track emerging legislation and regulatory trends", /* iconSrc: pi("policy-radar"), icon: "radar", */ external: true },
           { href: "https://stateof.greensoftware.foundation", label: "State of Green Software", /* iconSrc: pi("state-of-green-software"), icon: "bar-chart", */ external: true },
+          { href: "/policy/ghg-scope2/", label: "GHG Protocol Scope 2", description: "Consultation Response" },
+          { href: "https://github.com/Green-Software-Foundation/sci-policy-and-legislation-alignment-white-paper-series", label: "Policy White Papers", description: "SCI policy & legislation alignment series", external: true },
         ],
       },
       {

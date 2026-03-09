@@ -91,6 +91,7 @@ export interface NavLink {
   description?: string;
   icon?: string; // Lucide icon name from iconMap (e.g. "target", "file-text")
   iconSrc?: string; // URL to an SVG/image icon (takes priority over icon)
+  indent?: boolean; // Visually indent to show hierarchy (e.g. sub-standards)
 }
 
 export interface NavFeatured {
@@ -154,7 +155,7 @@ function MegaMenuLink({ link }: { link: NavLink }) {
       href={link.href}
       target={link.external ? "_blank" : undefined}
       rel={link.external ? "noopener noreferrer" : undefined}
-      className="group/link flex gap-2.5 rounded px-2 py-1.5 transition-colors hover:bg-accent-lightest-2"
+      className={`group/link flex gap-2.5 rounded px-2 py-1.5 transition-colors hover:bg-accent-lightest-2${link.indent ? " pl-5 border-l-2 border-primary-lighter ml-2" : ""}`}
     >
       {hasIcon && <NavIcon link={link} />}
       <div className="flex flex-col gap-0.5">
@@ -270,7 +271,7 @@ function MobileNavSection({ section }: { section: NavSection }) {
               href={link.href}
               target={link.external ? "_blank" : undefined}
               rel={link.external ? "noopener noreferrer" : undefined}
-              className="flex items-center gap-1.5 rounded px-2 py-2 text-base text-primary-dark transition-colors hover:bg-accent-lightest-2"
+              className={`flex items-center gap-1.5 rounded px-2 py-2 text-base text-primary-dark transition-colors hover:bg-accent-lightest-2${link.indent ? " pl-6 border-l-2 border-primary-lighter ml-2 text-sm" : ""}`}
             >
               {link.label}
               {link.external && (
