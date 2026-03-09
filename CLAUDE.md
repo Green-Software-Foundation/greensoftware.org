@@ -99,26 +99,35 @@ Tokens are defined in `src/styles/global.css`.
 
 1. **UI Primitives** (Tier 1) — Radix UI components in `src/components/ui/` (button, navigation-menu, sheet, etc.).
 2. **Layout Components** (Tier 2) — Navbar, Footer, Hero. Parameterised with props for content.
-3. **Content Section Components** (Tier 3) — TextWithImage, FeatureGrid, CardGrid, StatsGrid, CTABanner, CTACard, TextBlock, LogoMarquee, Testimonial, TabbedSection, CommunityReach, ArticleCarousel, ResourceCards. All content via props.
+3. **Content Section Components** (Tier 3) — TextWithImage, FeatureGrid, CardGrid, StatsGrid, CTABanner, CTACard, TextBlock, LogoMarquee, Testimonial, TabbedSection, CommunityReach, ArticleCarousel, ResourceCards, Breadcrumb, GovernanceDiagram, MemberStories, NewsletterSignup, SplitCards, TeamGrid, Timeline, VerticalPipeline. All content via props.
 
 ### Key Directories
 
-- `src/pages/` — Pages (homepage.astro is the main homepage)
-- `src/components/` — Parameterised Astro components
-- `src/components/react/` — React islands (navbar.tsx uses Radix NavigationMenu)
-- `src/components/ui/` — UI primitives (button, navigation-menu, sheet)
-- `src/data/` — Data files (logos.json with 60+ member logos)
-- `src/assets/` — SVG assets imported as components
-- `public/assets/` — Static assets (images, SVGs)
-- `.microsites/` — Reference microsites (sci, wdpc, soft) — separate repos, used as design reference
+- `src/pages/` — All route pages
+- `src/components/` — Parameterised Astro components and `.stories.ts` files
+- `src/components/react/` — React islands (navbar, article-carousel, search-dialog, tabbed-section, timeline-track, newsletter-form)
+- `src/components/ui/` — UI primitives (shadcn/ui copies: button, navigation-menu, sheet, etc.)
+- `src/content/` — Content collections: `articles/`, `pages/`, `research/`, `stories/`
+- `src/data/` — **Generated at build time** by `npm run fetch-notion` — never committed. Contains `members.json`, `people.json`, `stats.json`, `projects.json`, `press-mentions.json`.
+- `src/layouts/` — Two layouts: `showcase.astro` (main, full SEO/OG meta) and `main.astro` (legacy, used only by the SCI microsite reference)
+- `src/lib/` — Shared utilities: `nav-items.ts` (full nav config), `utils.ts`
+- `src/plugins/` — `remark-directives-handler.mjs` (custom Markdown directive processor)
+- `src/styles/` — `global.css` (design tokens + Tailwind config)
+- `src/assets/` — SVG assets imported as Astro components (e.g. `linkedin-icon.svg`)
+- `public/assets/` — Static assets (images, SVGs served as-is)
+- `scripts/` — `fetch-notion-data.cjs` (Notion data fetcher), migration scripts
+- `docs/` — Feature specs, how-to guides, component catalogue docs
+- `_legacy/` — Original Gatsby 4 site (reference only)
+
+**Path alias:** `@/` resolves to both `./src/` and `./public/` (defined in `tsconfig.json`). Use `@/components/...`, `@/data/...`, `@/styles/...`, etc.
 
 ### Parameterised Components
 
 | Component | File | Key Props |
 |-----------|------|-----------|
-| Navbar | `navbar.astro` + `react/navbar.tsx` | navItems, logoSrc, topBar ("project-by"\|"utility"\|"none"), ctaText |
-| Hero | `hero.astro` | heading, headingAccent, body, ctas[], imageSrc, bgClass, scrollIndicator |
-| LogoMarquee | `logo-marquee.astro` | heading, greyscale, bgClass (auto-loads logos.json) |
+| Navbar | `navbar.astro` + `react/navbar.tsx` | navItems, logoSrc, topBar ("project-by"\|"utility"\|"none"), ctaText, showSearch |
+| Hero | `hero.astro` | heading, headingAccent, body, ctas[], imageSrc, bgClass, scrollIndicator, badges[] |
+| LogoMarquee | `logo-marquee.astro` | heading, greyscale, bgClass, fadeBgClass (auto-loads members.json, filters active + logo) |
 | Testimonial | `testimonial.astro` | quote, author, title, company |
 | TextBlock | `text-block.astro` | heading (supports `*accent*`), body, imageSrc, card, compact |
 | TabbedSection | `tabbed-section.astro` | badge, heading, imageSrc, ctaText, tabs[] ({value, heading, description}), compact |
@@ -132,18 +141,89 @@ Tokens are defined in `src/styles/global.css`.
 | CTABanner | `cta-banner.astro` | heading, body, ctaText, ctaHref, note |
 | CTACard | `cta-card.astro` | heading, body, ctaText, ctaHref, imageSrc, imageAlt |
 | Footer | `footer.astro` | logoSrc, description, sections[] with links/socialLinks |
+| Breadcrumb | `breadcrumb.astro` | items[] ({label, href?}), bgClass |
+| GovernanceDiagram | `governance-diagram.astro` | bgClass |
+| MemberStories | `member-stories.astro` | stories[] ({title, description, organizations[], imageSrc, href}) |
+| NewsletterSignup | `newsletter-signup.astro` | heading, body (wraps react/newsletter-form with Mailchimp JSONP) |
+| SplitCards | `split-cards.astro` | heading, body, iconSrc, decorSrc, ctaText, ctaHref, quote, quoteIconSrc, attribution |
+| TeamGrid | `team-grid.astro` | heading, body, members[], highlighted[], columns (2\|3\|4), decorSrc, bgClass |
+| Timeline | `timeline.astro` + `react/timeline-track.tsx` | items[] ({date, description, completed?, current?, start?, end?}) |
+| VerticalPipeline | `vertical-pipeline.astro` | heading (supports `*accent*`), body, badge, steps[] ({name, description}), bgClass |
 
 ### Heading Accent Pattern
 
 Many components support inline accent text in headings using `*asterisks*` syntax (e.g. `heading="You're not the *first* to face these challenges"`). The asterisk-wrapped word renders in `font-bold text-primary`. This replaced the older `heading`+`headingAccent` two-prop pattern.
 
+**Note:** The React-rendered `ArticleCarousel` does **not** support `*accent*` syntax — asterisks render literally. Use plain headings for that component.
+
+### Pages
+
+All pages use `src/layouts/showcase.astro` for SEO/OG meta. Import `navItems` from `@/lib/nav-items` for the navbar.
+
+| Route | File | Description |
+|-------|------|-------------|
+| `/` | `pages/index.astro` | Homepage |
+| `/about/` | `pages/about/index.astro` | About GSF |
+| `/community/` | `pages/community/index.astro` | Community (podcasts, meetups, badges) |
+| `/contact/` | `pages/contact/index.astro` | Contact |
+| `/education/` | `pages/education/index.astro` | Education programme |
+| `/governance` | `pages/governance.astro` | Governance & Leadership (uses `people.json`) |
+| `/membership/` | `pages/membership.astro` | Membership tiers |
+| `/newsletter/` | `pages/newsletter/index.astro` | Newsletter signup |
+| `/policy/` | `pages/policy/index.astro` | Policy & Research |
+| `/press/` | `pages/press/index.astro` | Press & Media |
+| `/brand/` | `pages/brand/index.astro` | Brand assets |
+| `/standards/` | `pages/standards/index.astro` | Standards overview |
+| `/standards/sci/` | `pages/standards/sci/index.astro` | SCI standard |
+| `/standards/sci-ai/` | `pages/standards/sci-ai/index.astro` | SCI for AI |
+| `/standards/sci-web/` | `pages/standards/sci-web/index.astro` | SCI for Web |
+| `/standards/soft/` | `pages/standards/soft/index.astro` | SOFT framework |
+| `/standards/rtc/` | `pages/standards/rtc/index.astro` | Real-time Cloud |
+| `/standards/see/` | `pages/standards/see/index.astro` | Software Energy Efficiency |
+| `/standards/wdpc/` | `pages/standards/wdpc/index.astro` | WDPC |
+| `/standards/certification/` | `pages/standards/certification/index.astro` | Certification |
+| `/articles/[...slug]` | `pages/articles/[...slug].astro` | Individual article pages |
+| `/articles/[...page]` | `pages/articles/[...page].astro` | Paginated article listing |
+| `/stories/` | `pages/stories/index.astro` | Member stories listing |
+| `/stories/[slug]` | `pages/stories/[slug].astro` | Dynamic story pages (from content collection) |
+| `/stories/carbon-aware-sdk` | `pages/stories/carbon-aware-sdk.astro` | Static story page |
+| `/stories/sci-for-ai` | `pages/stories/sci-for-ai.astro` | Static story page |
+| `/admin/` | `pages/admin/index.astro` | Sveltia CMS admin UI |
+| `/playground/` | Astrobook integration | Component playground |
+
+### Content Collections
+
+Defined in `src/content.config.ts` using Astro's content collection API.
+
+**`articles`** (`src/content/articles/`) — Multi-language (en, ja, pt, zh subdirs). Key fields:
+- `title`, `date`, `summary`, `teaserText`
+- `mainImage` (Astro-processed image), `mainImageAlt`
+- `authors[]` / `translators[]` — `{fullName, role?, company?, photo?, socialMedia[]}`
+- `lang` (default `"en"`)
+- `featured`, `tags[]`, `organizations[]`, `additionalOrgCount`
+- Only English articles are indexed by PageFind
+
+**`pages`** (`src/content/pages/`) — CMS-managed static pages (`title`, `slug`, `description`).
+
+**`research`** (`src/content/research/`) — Research publications:
+- `title`, `date`, `abstract`, `summary`
+- `mainImage`, `authors[]`, `organizations[]`, `doi`, `pdfUrl`, `featured`, `lang`
+
+**`stories`** (`src/content/stories/`) — Member stories with rich schema:
+- Simple fields: `title`, `summary`, `date`, `challenge`, `outcome`, `mainImage`, `organizations[]`
+- Rich fields: `problemHeading`, `journeyHeading`, `orgs[]` ({name, logo?}), `stats[]` ({value, label}), `timeline[]` ({date, heading, body, source?}), `featuredQuote`, `contributors[]`, `quotes[]`, `relatedSlugs[]`, `cta`
+- Stories with `timeline` data appear in the `/stories/` listing
+
 ### Homepage Composition
 
-The homepage (`homepage.astro`) composes ~260 lines of component composition (no inline HTML). Structure: Navbar → Hero (with scroll indicator) → LogoMarquee → Testimonial → TextBlock (heading) → 5× TabbedSection (problem-solution pairs, all compact) → CTACard → CommunityReach (5 stats + world map) → FeatureGrid (bordered variant, 2×2) → ResourceCards (3 cards) → ArticleCarousel (4 articles with multi-org logos) → CTABanner → Footer. The navbar uses `topBar="none"` with the full GSF logo (`gsf-logo-full.svg`, 52px height).
+The homepage (`src/pages/index.astro`) composes component sections (no inline HTML). Structure:
+Navbar → Hero (with scroll indicator) → LogoMarquee → Testimonial → TextBlock (heading) → 5× TabbedSection (problem-solution pairs, all compact) → CTACard → CommunityReach (5 stats + world map) → FeatureGrid (bordered variant, 2×2) → ResourceCards (3 cards) → ArticleCarousel (4 articles with multi-org logos) → CTABanner → Footer.
+
+The navbar uses `topBar="none"` with the full GSF logo (`gsf-logo-full.svg`, 52px height).
 
 ### Data Fetching
 
-All site data (members, logos, team, stats, press mentions) is fetched from Notion via `scripts/fetch-notion-data.cjs`. Requires `NOTION_API_KEY` env var (in `.env` locally, configured in Netlify dashboard for deploys).
+All site data (members, team, stats, projects, press mentions) is fetched from Notion via `scripts/fetch-notion-data.cjs`. Requires `NOTION_API_KEY` env var (in `.env` locally, configured in Netlify dashboard for deploys).
 
 - `npm run fetch-notion` — fetch fresh data from Notion into `src/data/` and `public/assets/`
 - `npm run build` — build with cached data (no Notion fetch)
@@ -151,40 +231,55 @@ All site data (members, logos, team, stats, press mentions) is fetched from Noti
 
 The fetch script exits gracefully if `NOTION_API_KEY` is missing, creating empty fallback JSON files so the build still succeeds.
 
-**Data files produced:** `members.json` (all tiers), `people.json` (all volunteers/staff), `stats.json`, `projects.json`, `press-mentions.json`. Note: `logos.json` no longer exists — `LogoMarquee` and all logo consumers read directly from `members.json`, filtering by `active && logo && !hideLogo` at runtime.
+**Data files produced** (all in `src/data/` — generated, not committed):
+- `members.json` — all members (all tiers), with `active`, `membershipLevel`, `organisationType`, `logo`, `hideLogo` fields
+- `people.json` — all team/volunteer people with `groups` (`administrativeTeam`, `steeringCommittee`, `chairsAndLeads`, `organisationalLeads`) and `leadershipRoles`
+- `stats.json` — aggregate stats
+- `projects.json` — all PWCI projects with `slug`, `name`, `icon`, `parent`, `lifecycle`
+- `press-mentions.json` — press mentions from Notion "GSF Mentions in the News" database
+
+**Note: `logos.json` no longer exists.** `LogoMarquee` and all logo consumers read directly from `members.json`, filtering by `active && logo && !hideLogo` at runtime.
 
 **Notion roll-up limitation:** Roll-up properties of type `files` do **not** return signed download URLs in the Notion API — the `files` array is always empty. Photos for subscription-based people (steering committee, chairs/leads, org leads) are resolved via a `volunteerPhotoByName` map built from the Volunteers DB records fetched in `main()`, not from roll-ups.
 
 **Subscription roll-ups:** Person data for subscription-based people is read directly from Subscription DB roll-up fields (`First Name`, `Surname`, `Title`, `LinkedIn`, `Member`, `Volunteer Status`) via `extractPersonFromSub()`. No per-subscription volunteer lookup needed. Volunteer Status is checked as a warning only — people with active subscriptions are included regardless of volunteer status.
 
+### Governance Page (`/governance`)
+
+The governance page at `src/pages/governance.astro` pulls all data from `people.json`:
+- **Steering Committee** — filtered by `groups.includes("steeringCommittee")`. Chair = Gadhu Sundaram, Vice-Chair = Jonathan Turnbull (hardcoded names for `highlighted` prop).
+- **Staff** — filtered by `groups.includes("administrativeTeam")`, sorted with Executive Director first.
+- **Chairs & Leads** — filtered by `groups.includes("chairsAndLeads")`, then filtered to exclude pure "(Member)" roles. `leadershipRoles` used as labels.
+- **Org Leads** — filtered by `groups.includes("organisationalLeads")`.
+
 ### Press Page (`/press/`)
 
-The press page at `src/pages/press/index.astro` pulls data dynamically from multiple sources:
-- **Member counts** — computed from `steering-members.json`, `general-members.json`, `academic-government-members.json` (filtered by `active: true`)
+The press page at `src/pages/press/index.astro` pulls data dynamically:
+- **Member counts** — computed from `members.json` filtered by `active: true` and `membershipLevel`/`organisationType`
 - **Governed-by list** — active steering member company names
-- **Leadership** — hardcoded config at top of file (chair, vice-chair, executive director names) matched against `team.json` for photos
-- **Stories** — from the stories content collection
-- **Press mentions** — from `src/data/press-mentions.json` (fetched from Notion "GSF Mentions in the News" database)
-- **Timeline** — hardcoded 22-item timeline with links to articles and external sites
+- **Leadership** — hardcoded names (chair, vice-chair, executive director) matched against `people.json` for photos
+- **Stories** — from the `stories` content collection (stories with `stats`)
+- **Press mentions** — from `src/data/press-mentions.json`
+- **Timeline** — hardcoded timeline array
 
 ### Policy & Research Page (`/policy/`)
 
-The policy page at `src/pages/policy/index.astro` covers the Policy Working Group and research programme:
-- **Leadership** — Chris Adams, Aya Saed (co-chairs), Joseph Cook (Head of Research) — photos from `team.json`
+The policy page at `src/pages/policy/index.astro` covers the Policy Working Group:
+- **Leadership** — Chris Adams, Aya Saed (co-chairs), Joseph Cook (Head of Research) — photos from `people.json`
 - **Policy Radar** — TextWithImage linking to `policy-radar.greensoftware.foundation`
-- **Policy Engagement** (`#engagement` anchor) — 6 hardcoded cards with article links (GHG Protocol, AI Environmental Impacts Act, NY CCAA, EGDC, UK GDSA, EU AI Act)
-- **Engagement Principles** — 5 principles from PWG mission statement (FeatureGrid, no icons)
-- **Partnerships** — W3C, IASA, SustainableIT.org, UK GDSA, BCS (FeatureGrid with article links)
-- **Research** — 4 hardcoded publication cards (AI Environmental Assessments, Green AI Position Paper, Texas State study, UBS/Microsoft whitepaper)
-- **Article carousel** — dynamically filtered by `tags` field containing "policy" or "research"
+- **Policy Engagement** (`#engagement` anchor) — hardcoded cards with article links
+- **Partnerships** — FeatureGrid with article links
+- **Research** — hardcoded publication cards
+- **Article carousel** — dynamically filtered from content collection by `tags` containing "policy" or "research"
 
 ### Article Tags
 
-Articles support an optional `tags` field (string array) in frontmatter. Tags are used to surface articles on topic pages:
-- `"policy"` — appears in the Policy & Research carousel
-- `"research"` — appears in the Policy & Research carousel
+Articles support an optional `tags` field (string array) in frontmatter. Tags surface articles on topic pages:
+- `"policy"` — appears in the Policy & Research page carousel
+- `"research"` — appears in the Policy & Research page carousel
 - `"community"` — appears in the Community page carousel
-- Tags are managed via the Sveltia CMS Tags widget or directly in frontmatter
+- `"education"` — appears in the Education page carousel
+- Tags can be managed via Sveltia CMS or directly in frontmatter
 
 ### Standards Page (`/standards/`)
 
@@ -193,12 +288,15 @@ The standards page at `src/pages/standards/index.astro` showcases GSF's standard
 - **Lifecycle badges** — each card shows its lifecycle stage; "Learn more" links are hidden for Proposal/Pre-proposal stages
 - **Sections**: Hero → VerticalPipeline (7-stage lifecycle) → Project cards grid → AI-facilitated consensus → Assemblies → Spec quality FeatureGrid → SCI Certification CTACard → CTABanner
 
+Individual standard pages (e.g. `/standards/sci/`) use `projects.json` to pull the project's lifecycle and icon, then render with TeamGrid for chairs/leads.
+
 ### Navigation (`src/lib/nav-items.ts`)
 
-The nav config supports these features:
-- **`headerLink`** — per-section CTA button rendered at the top of a mega-menu section (e.g. "About our education programme →"). Defined on `NavSection`, rendered in both desktop `MegaMenuPanel` and mobile `MobileNavSection`.
-- **`footerLink`** — panel-level CTA at the bottom of the entire dropdown (e.g. "About our standards process →"). Defined on `NavItemDropdown`.
+The nav config is exported as `navItems` and imported on every page. It supports:
+- **`headerLink`** — per-section CTA button rendered at the top of a mega-menu section. Defined on `NavSection`, rendered in both desktop `MegaMenuPanel` and mobile `MobileNavSection`.
+- **`footerLink`** — panel-level CTA at the bottom of the entire dropdown. Defined on `NavItemDropdown`.
 - **Icons** — currently all commented out across all menus. Both `iconSrc` (project image URL) and `icon` (Lucide icon name) are supported but disabled pending design review.
+- Project icons are loaded from `projects.json` via `iconMap` — the `pi(slug)` helper returns the icon path.
 
 ### Site Search (PageFind)
 
@@ -206,7 +304,7 @@ The site uses [PageFind](https://pagefind.app/) for static site search. PageFind
 
 - **Build integration:** `pagefind --site dist` runs automatically after `astro build` (configured in `package.json` build scripts)
 - **Search UI:** Custom React component at `src/components/react/search-dialog.tsx` — uses PageFind's JS API (not its default UI) for full styling control
-- **Trigger:** Click the search icon in the navbar, or press `Cmd+K` / `Ctrl+K`
+- **Trigger:** Click the search icon in the navbar (enabled with `showSearch` prop), or press `Cmd+K` / `Ctrl+K`
 - **Lazy-loaded:** The search dialog is imported via `React.lazy()` in `navbar.tsx` so PageFind JS is only loaded when search is opened
 
 **Indexing rules (opt-in model):**
@@ -224,28 +322,40 @@ The site uses [PageFind](https://pagefind.app/) for static site search. PageFind
 
 **Vite compatibility:** The PageFind import uses `new Function("return import('/pagefind/pagefind.js')")` to bypass Vite's import analysis, which would otherwise try to bundle it at build time.
 
+### Newsletter Integration
+
+The newsletter form uses Mailchimp JSONP (`foundation.us5.list-manage.com`). The React component at `src/components/react/newsletter-form.tsx` handles submission with inline feedback (no page reload). It has two variants:
+- `"inline"` — full form with optional heading/body (used on newsletter page and in `NewsletterSignup` component)
+- `"compact"` — compact form for footer or sidebar
+
+### Markdown / MDX
+
+Articles and stories are Markdown files processed with:
+- `remark-gfm` — GitHub Flavored Markdown (tables, strikethrough, etc.)
+- `remark-directive` + `src/plugins/remark-directives-handler.mjs` — custom `:::` directive blocks
+- `rehype-slug` + `rehype-autolink-headings` — auto-generated anchor links on headings
+
 ### Component Playground (Astrobook)
 
 The site includes an [Astrobook](https://github.com/ocavue/astrobook) component playground at `/playground/` for visually browsing and testing all parameterised components.
 
-- **24 components** with **51 story variants** in `src/components/*.stories.ts`
-- **CSF v3 format** — default export with `component`, named exports with `args`
+- **Story files** — `src/components/*.stories.ts` (CSF v3 format: default export with `component`, named exports with `args`)
 - **Configured** in `astro.config.mjs` with `global.css` for correct Tailwind tokens and fonts
 - **Story args must match component interfaces exactly** — props are passed directly, so mismatches cause runtime crashes
 
 ### Dev Server
 
 ```bash
-npm run dev    # Dev server on localhost:4322
+npm run dev -- --port 4322    # Dev server on localhost:4322
 ```
 
-The homepage is at `/` and the component catalogue is at `/catalogue`.
+The homepage is at `/` and the component playground is at `/playground/`.
 
 ### Deployment (Netlify)
 
 - Deployed on Netlify, site: `green-software-foundation`
 - Build command: `npm run build:full` (via `netlify.toml`)
-- Node version: 22 (set in both `.nvmrc` and `netlify.toml`)
+- Node version: 22 (set in `netlify.toml`)
 - **Use the `netlify` CLI** to inspect deploy logs, site config, and environment variables when debugging build failures (e.g. `netlify deploy --build`, `netlify env:list`, `netlify logs`)
 
 ## Legacy Gatsby Site
