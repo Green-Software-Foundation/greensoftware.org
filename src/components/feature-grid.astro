@@ -28,6 +28,8 @@ interface Props {
   bgClass?: string;
   /** Tailwind classes applied to *accent* words in the heading (default: "font-bold text-primary") */
   accentClass?: string;
+  /** Tailwind classes applied to non-accent words in the heading (default: inherits h2 weight) */
+  nonAccentClass?: string;
 }
 
 const cardColumnClasses: Record<number, string> = {
@@ -54,6 +56,7 @@ const {
   compact = false,
   bgClass = "bg-accent-lightest-2",
   accentClass = "font-bold text-primary",
+  nonAccentClass,
 } = Astro.props;
 
 // Split heading into plain and accent segments
@@ -74,7 +77,7 @@ const headingParts = heading.split(/(\*[^*]+\*)/g).filter(Boolean).map(part => {
             {headingParts.map(part =>
               part.accent
                 ? <span class={accentClass}>{part.text}</span>
-                : part.text
+                : nonAccentClass ? <span class={nonAccentClass}>{part.text}</span> : part.text
             )}
           </h2>
           {body && (
@@ -143,7 +146,7 @@ const headingParts = heading.split(/(\*[^*]+\*)/g).filter(Boolean).map(part => {
             {headingParts.map(part =>
               part.accent
                 ? <span class={accentClass}>{part.text}</span>
-                : part.text
+                : nonAccentClass ? <span class={nonAccentClass}>{part.text}</span> : part.text
             )}
           </h2>
           {bodyHtml ? (
