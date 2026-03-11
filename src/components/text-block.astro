@@ -16,6 +16,8 @@ interface Props {
   compact?: boolean;
   /** Background class */
   bgClass?: string;
+  /** Tailwind classes applied to *accent* words in the heading (default: "font-bold text-primary") */
+  accentClass?: string;
   /** Scrolling ticker/marquee items (displayed as a scrolling banner below the text) */
   ticker?: string[];
 }
@@ -29,6 +31,7 @@ const {
   card = false,
   compact = false,
   bgClass = "bg-accent-lightest-2",
+  accentClass = "font-bold text-primary",
   ticker = [],
 } = Astro.props;
 
@@ -52,7 +55,7 @@ const headingParts = heading.split(/(\*[^*]+\*)/g).filter(Boolean).map(part => {
         <h2 class="text-2xl font-semibold md:text-3xl lg:text-4xl">
           {headingParts.map(part =>
             part.accent
-              ? <span class="font-bold text-primary">{part.text}</span>
+              ? <span class={accentClass}>{part.text}</span>
               : part.text
           )}
         </h2>

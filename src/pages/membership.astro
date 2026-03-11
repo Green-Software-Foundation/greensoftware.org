@@ -15,7 +15,7 @@ import Footer from "@/components/footer.astro";
 ---
 
 <Layout
-  title="Membership — Green Software Foundation"
+  title="Membership | Green Software Foundation"
   description="Join the Green Software Foundation. Membership tiers for enterprises, SMEs, academic institutions, and government organisations committed to sustainable software."
 >
   <Navbar
@@ -33,7 +33,7 @@ import Footer from "@/components/footer.astro";
   <Hero
     heading="You've been handed a sustainability mandate"
     headingAccent="with no playbook"
-    body="GSF membership gives you the peer network, frameworks, and foundation resources to turn that mandate into measurable results."
+    body="GSF membership gives you the peer network, frameworks, and foundation resources to turn that mandate into measurable results"
     ctas={[
       { text: "Book a discussion", variant: "primary", href: "mailto:help@greensoftware.foundation?subject=Membership%20enquiry" },
     ]}
@@ -45,8 +45,8 @@ import Footer from "@/components/footer.astro";
 
   <!-- Section 2: The Room — intro text above the logos -->
   <TextBlock
-    heading="These organisations don't just use our standards — they *shape* them"
-    body="They bring their hardest problems to the foundation, and together we build solutions that benefit the entire industry."
+    heading="Members bring their hardest problems to the foundation, *together we build solutions* for the benefit of the entire industry"
+    body="These organisations don't just use our standards: they shape them"
     compact
   />
 
@@ -61,7 +61,8 @@ import Footer from "@/components/footer.astro";
   <TextWithImage
     heading="Bring us your"
     headingAccent="hardest problem"
-    body="Steering membership isn't a subscription — it's a partnership. You bring the challenge your organisation is facing. We put the foundation's resources, expertise, and member network behind solving it. Bespoke. Email help@greensoftware.foundation to arrange a meeting to discuss how we can help."
+    body="Steering membership isn't a subscription: it's a partnership. You bring the challenge your organisation is facing. We put the foundation's resources, expertise, and member network behind solving it. Bespoke."
+    note={`Email <a href="mailto:help@greensoftware.foundation" class="text-primary-dark underline underline-offset-2">help@greensoftware.foundation</a> to arrange a confidential discussion about whether membership is the right option for your organisation.`}
     imageSrc="/assets/dive-illustration.svg"
     imageAlt="Partnership illustration"
   />
@@ -71,7 +72,7 @@ import Footer from "@/components/footer.astro";
     <div class="mx-auto max-w-4xl px-6 text-center">
       <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Get in Touch</h2>
       <p class="text-lg text-white/70 mb-6">
-        Email us to arrange a meeting to discuss how membership can help your organisation.
+        Email us to arrange a meeting to discuss how membership can help your organisation
       </p>
       <a href="mailto:help@greensoftware.foundation?subject=Membership%20enquiry" class="inline-block text-2xl font-bold text-accent hover:text-accent-light transition-colors">
         help@greensoftware.foundation
@@ -80,28 +81,28 @@ import Footer from "@/components/footer.astro";
   </section>
 
   <FeatureGrid
-    heading="What *steering members* get"
+    headingHtml={`<span class="font-bold text-primary-dark">Steering membership,</span> <span class="font-bold text-primary">defining</span> <span class="font-bold text-primary-dark">GSF's roadmap</span>`}
     columns={2}
     features={[
       {
         icon: "/assets/shape-icon-1.svg",
         title: "A bespoke plan for your biggest problem",
-        description: "We combine assemblies, policy work, standards proposals, networking events, and educational material into a tailored offering that addresses your specific challenge.",
+        description: "We combine assemblies, policy work, standards proposals, networking events, and educational material into a tailored offering that addresses your specific challenge",
       },
       {
         icon: "/assets/shape-icon-2.svg",
         title: "Guaranteed seat on the governing board",
-        description: "Direct influence on the foundation's direction and priorities.",
+        description: "Direct influence on the foundation's direction and priorities",
       },
       {
         icon: "/assets/shape-icon-3.svg",
         title: "Quarterly executive deep dives",
-        description: "High-bandwidth conversations with the GSF leadership team to surface challenges, discuss engagement, and refine your roadmap.",
+        description: "High-bandwidth conversations with the GSF leadership team to surface challenges, discuss engagement, and refine your roadmap",
       },
       {
         icon: "/assets/shape-icon-4.svg",
         title: "Guaranteed seats on all committees and assemblies",
-        description: "You'll never be shut out of the room where decisions are made.",
+        description: "You'll never be shut out of the room where decisions are made",
       },
     ]}
   />
@@ -109,11 +110,11 @@ import Footer from "@/components/footer.astro";
   <!-- Section 4: Proof — Member Stories -->
   <MemberStories
     heading="How members are *solving real problems*"
-    body="Every story starts the same way: an organisation brings us a problem they can't solve alone."
+    body="Every story starts the same way: an organisation brings us a problem they can't solve alone"
     stories={[
       {
         title: "Our engineers don't know how to build green software",
-        description: "Goldman Sachs, Avanade, and GSF members worldwide built and scaled the Green Software Practitioner course — now completed by over 130,000 engineers across the industry.",
+        description: "Goldman Sachs, Avanade, and GSF members worldwide built and scaled the Green Software Practitioner course, now completed by over 130,000 engineers across the industry",
         organizations: [
           { name: "Goldman Sachs" },
           { name: "Avanade" },
@@ -125,7 +126,7 @@ import Footer from "@/components/footer.astro";
       },
       {
         title: "Our pilots work but nothing scales across the org",
-        description: "Pindy Bhullar, Sean O'Keefe, and contributors from eight GSF member organisations built SOFT — the first ratified standard for embedding green software practices across an entire organisation.",
+        description: "Pindy Bhullar, Sean O'Keefe, and contributors from eight GSF member organisations built SOFT, the first ratified standard for embedding green software practices across an entire organisation",
         organizations: [
           { name: "HSBC" },
           { name: "Microsoft" },
@@ -137,7 +138,7 @@ import Footer from "@/components/footer.astro";
       },
       {
         title: "We can't shift workloads to clean energy",
-        description: "Microsoft, UBS, Avanade, NTT DATA, and partners built the Carbon Aware SDK — the first open-source toolkit for carbon-aware computing, now deployed on production banking systems.",
+        description: "Microsoft, UBS, Avanade, NTT DATA, and partners built the Carbon Aware SDK, the first open-source toolkit for carbon-aware computing, now deployed on production banking systems",
         organizations: [
           { name: "Microsoft" },
           { name: "UBS" },
@@ -149,7 +150,7 @@ import Footer from "@/components/footer.astro";
       },
       {
         title: "We can't measure software carbon",
-        description: "11 organisations built the Software Carbon Intensity specification into ISO 21031:2024 — the first standardised way to measure software's carbon impact as a rate, not a total.",
+        description: "11 organisations built the Software Carbon Intensity specification into ISO 21031:2024, the first standardised way to measure software's carbon impact as a rate, not a total",
         organizations: [
           { name: "Accenture" },
           { name: "UBS" },
@@ -166,8 +167,8 @@ import Footer from "@/components/footer.astro";
 
   <!-- Section 5: General Membership -->
   <TextBlock
-    heading="Start with access to *everything* our members have built — general membership *includes*"
-    body="General membership gives you immediate access to the standards, training, and community that 130,000+ practitioners already use."
+    heading="Start with access to *everything* our members have built: general membership *includes*"
+    body="General membership gives you immediate access to the standards, training, and community that 130,000+ practitioners already use"
     compact
   />
 
@@ -178,32 +179,32 @@ import Footer from "@/components/footer.astro";
       {
         icon: "/assets/standardized-icon.svg",
         title: "Attend project and working group meetings",
-        description: "Participate in the development of standards and frameworks.",
+        description: "Participate in the development of standards and frameworks",
       },
       {
         icon: "/assets/co2-icon.svg",
         title: "Propose projects",
-        description: "Bring ideas to the foundation for consideration.",
+        description: "Bring ideas to the foundation for consideration",
       },
       {
         icon: "/assets/renewable-icon.svg",
         title: "Access to cohort-based training",
-        description: "Join structured learning programmes with peers.",
+        description: "Join structured learning programmes with peers",
       },
       {
         icon: "/assets/cost-icon.svg",
         title: "In-house training licensing",
-        description: "Integrate GSF courses into your own internal training platforms.",
+        description: "Integrate GSF courses into your own internal training platforms",
       },
       {
         icon: "/assets/realtime-icon.svg",
         title: "Participate in events",
-        description: "Summit, Carbon Hack, and other member events.",
+        description: "Summit, Carbon Hack, and other member events",
       },
       {
         icon: "/assets/dive-icon-1.svg",
         title: "Ability to chair working groups",
-        description: "Lead initiatives that shape the future of green software.",
+        description: "Lead initiatives that shape the future of green software",
       },
     ]}
   />
@@ -217,42 +218,42 @@ import Footer from "@/components/footer.astro";
       {
         icon: "/assets/dive-icon-1.svg",
         title: "1. Book a meeting",
-        description: "Meet with our Head of Partnerships to discuss your sustainability challenges and objectives.",
+        description: "Meet with our Head of Partnerships to discuss your sustainability challenges and objectives",
       },
       {
         icon: "/assets/dive-icon-2.svg",
         title: "2. We understand your problem",
-        description: "We extract the core challenges, connect the dots between your needs and existing projects, and identify members who might want to collaborate.",
+        description: "We extract the core challenges, connect the dots between your needs and existing projects, and identify members who might want to collaborate",
       },
       {
         icon: "/assets/dive-icon-3.svg",
         title: "3. We build a bespoke proposal",
-        description: "Leveraging our ecosystem — projects, standards, assemblies, policy work, educational resources — we create a tailored plan that addresses your specific challenge.",
+        description: "Leveraging our ecosystem (projects, standards, assemblies, policy work, educational resources), we create a tailored plan that addresses your specific challenge",
       },
       {
         icon: "/assets/dive-icon-4.svg",
         title: "4. We present it back to you",
-        description: "Review the proposal together, refine it, and agree on the path forward.",
+        description: "Review the proposal together, refine it, and agree on the path forward",
       },
       {
         icon: "/assets/shape-icon-1.svg",
         title: "5. Application and approval",
-        description: "Complete the formal application. For steering-level membership, existing steering members approve new members — maintaining the calibre and exclusivity of the group.",
+        description: "Complete the formal application. For steering-level membership, existing steering members approve new members, maintaining the calibre and exclusivity of the group",
       },
       {
         icon: "/assets/shape-icon-2.svg",
         title: "6. Onboarding",
-        description: "An onboarding call with the Director of Operations. We onboard your key staff, walk through our systems, show how meetings work, and connect you to the community.",
+        description: "An onboarding call with the Director of Operations. We onboard your key staff, walk through our systems, show how meetings work, and connect you to the community",
       },
       {
         icon: "/assets/shape-icon-3.svg",
         title: "7. Quarterly touchpoints",
-        description: "Regular check-ins with the Director of Operations to discuss progress, surface new challenges, and ensure you're getting value from your membership.",
+        description: "Regular check-ins with the Director of Operations to discuss progress, surface new challenges, and ensure you're getting value from your membership",
       },
       {
         icon: "/assets/shape-icon-4.svg",
         title: "8. Monthly reports",
-        description: "Personalised monthly reports showing where your organisation is engaging, surfacing important activities and opportunities — so you never have to worry about missing a meeting or email.",
+        description: "Personalised monthly reports showing where your organisation is engaging, surfacing important activities and opportunities, so you never have to worry about missing a meeting or email",
       },
     ]}
   />
@@ -260,7 +261,7 @@ import Footer from "@/components/footer.astro";
   <!-- Section 7: Final CTA -->
   <CTABanner
     heading="Every member's journey starts with a conversation"
-    body="Tell us what you're trying to solve. We'll tell you how membership can help."
+    body="Tell us what you're trying to solve. We'll tell you how membership can help"
     ctaText="Email help@greensoftware.foundation"
     ctaHref="mailto:help@greensoftware.foundation?subject=Membership%20enquiry"
   />
