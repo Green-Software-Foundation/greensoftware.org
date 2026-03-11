@@ -81,9 +81,7 @@ import Footer from "@/components/footer.astro";
   </section>
 
   <FeatureGrid
-    heading="*Steering membership,* defining GSF's roadmap"
-    accentClass="font-bold text-primary-dark"
-    nonAccentClass="font-normal"
+    headingHtml={`<span class="font-bold text-primary-dark">Steering membership,</span> <span class="font-normal text-accent-darker">defining</span> <span class="font-normal text-primary-dark">GSF's roadmap</span>`}
     columns={2}
     features={[
       {
