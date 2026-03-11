@@ -26,6 +26,8 @@ interface Props {
   compact?: boolean;
   /** Background class */
   bgClass?: string;
+  /** Tailwind classes applied to *accent* words in the heading (default: "font-bold text-primary") */
+  accentClass?: string;
 }
 
 const cardColumnClasses: Record<number, string> = {
@@ -51,6 +53,7 @@ const {
   variant = "cards",
   compact = false,
   bgClass = "bg-accent-lightest-2",
+  accentClass = "font-bold text-primary",
 } = Astro.props;
 
 // Split heading into plain and accent segments
@@ -70,7 +73,7 @@ const headingParts = heading.split(/(\*[^*]+\*)/g).filter(Boolean).map(part => {
           <h2 class="text-2xl font-semibold md:text-3xl lg:text-4xl">
             {headingParts.map(part =>
               part.accent
-                ? <span class="font-bold text-primary">{part.text}</span>
+                ? <span class={accentClass}>{part.text}</span>
                 : part.text
             )}
           </h2>
@@ -109,7 +112,7 @@ const headingParts = heading.split(/(\*[^*]+\*)/g).filter(Boolean).map(part => {
         <h2 class="text-center text-2xl font-extrabold md:text-3xl lg:text-4xl">
           {headingParts.map(part =>
             part.accent
-              ? <span class="text-primary">{part.text}</span>
+              ? <span class={accentClass}>{part.text}</span>
               : part.text
           )}
         </h2>
@@ -139,7 +142,7 @@ const headingParts = heading.split(/(\*[^*]+\*)/g).filter(Boolean).map(part => {
           <h2 class="text-2xl font-semibold md:text-3xl lg:text-4xl">
             {headingParts.map(part =>
               part.accent
-                ? <span class="font-bold text-primary">{part.text}</span>
+                ? <span class={accentClass}>{part.text}</span>
                 : part.text
             )}
           </h2>
