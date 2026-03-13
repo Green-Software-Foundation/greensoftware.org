@@ -1,0 +1,173 @@
+---
+import Layout from "@/layouts/showcase.astro";
+import { navItems } from "@/lib/nav-items";
+
+import Navbar from "@/components/navbar.astro";
+import Hero from "@/components/hero.astro";
+import LogoMarquee from "@/components/logo-marquee.astro";
+import CTACard from "@/components/cta-card.astro";
+import FeatureGrid from "@/components/feature-grid.astro";
+import TextWithImage from "@/components/text-with-image.astro";
+import CardGrid from "@/components/card-grid.astro";
+import CTABanner from "@/components/cta-banner.astro";
+import Breadcrumb from "@/components/breadcrumb.astro";
+import Footer from "@/components/footer.astro";
+---
+
+<Layout
+  title="Open19 Specification | Green Software Foundation"
+  description="An open standard for sustainable, vendor-neutral data centre infrastructure. Standardising rack and server form factors to maximise energy efficiency and hardware choice."
+>
+  <Navbar
+    logoSrc="/assets/gsf-logo-full.svg"
+    logoAlt="Green Software Foundation"
+    logoHref="/"
+    topBar="none"
+    showSearch
+    navItems={navItems}
+    ctaText="Discuss your challenges"
+    ctaHref="/membership/"
+  />
+
+  <Breadcrumb items={[
+    { label: "Home", href: "/" },
+    { label: "Standards", href: "/standards/" },
+    { label: "Open19" },
+  ]} />
+
+  <!-- Hero -->
+  <Hero
+    heading="Open Standards for"
+    headingAccent="Sustainable Infrastructure"
+    body="Open19 is an open specification for data centre rack and server infrastructure. Originally developed by LinkedIn and stewarded through the Sustainable and Scalable Infrastructure Alliance (SSIA), it is now part of the Green Software Foundation — standardising the physical layer of data centres to maximise energy efficiency, enable liquid cooling, and promote vendor choice."
+    ctas={[
+      { text: "View on GitHub", variant: "primary", href: "https://github.com/Green-Software-Foundation/open19" },
+      { text: "Back to Standards", variant: "outline", href: "/standards/" },
+    ]}
+    imageSrc="/assets/standards/sci/hero-illustration.svg"
+    imageAlt="Open19 illustration"
+    bgClass="bg-accent-lightest-2"
+    id="overview"
+  />
+
+  <!-- Logo Marquee -->
+  <LogoMarquee
+    heading="Developed with industry leaders in data centre infrastructure"
+  />
+
+  <!-- What is Open19? -->
+  <CTACard
+    heading="What is Open19?"
+    body="Open19 defines a vendor-neutral physical standard for data centre racks and server form factors. By standardising power distribution, networking interfaces, and blind-mate connectors, the specification allows hardware manufacturers to innovate internally while guaranteeing physical compatibility across vendors. The result is a more interoperable, energy-efficient data centre ecosystem with lower operational costs and simpler deployment."
+    imageSrc="/assets/standards/sci/about-gsf-illustration.svg"
+    imageAlt="Open19 specification overview"
+  />
+
+  <!-- Key Features -->
+  <FeatureGrid
+    heading="What *Open19* Defines"
+    body="The specification covers the physical and infrastructure standards for data centre environments — not internal component design — giving vendors freedom to innovate while maintaining interoperability."
+    columns={2}
+    variant="bordered"
+    features={[
+      {
+        icon: "/assets/standards/sci/shape-icon-1.svg",
+        title: "Server Form Factors",
+        description: "Multiple standardised 'brick' configurations — half-width 1U, full-width 1U, 2U, and half-width 2U for GPUs — enabling consistent rack design across vendors.",
+      },
+      {
+        icon: "/assets/standards/sci/shape-icon-2.svg",
+        title: "Power Distribution",
+        description: "V2 specifies native 48V DC power delivery at up to 3.5kW per brick, increasing efficiency and reducing conversion losses compared to traditional 12V architectures.",
+      },
+      {
+        icon: "/assets/standards/sci/shape-icon-3.svg",
+        title: "High-Performance Networking",
+        description: "Baseline connectivity at 100 Gbps, expandable to 200 Gbps, with V2 providing 50 GbE per brick as standard — designed for modern AI and high-density workloads.",
+      },
+      {
+        icon: "/assets/standards/sci/shape-icon-4.svg",
+        title: "Blind-Mate Connectors",
+        description: "Automated blind-mate connectors for both power and liquid-cooling plumbing simplify rack installation, reduce human error, and support high-density liquid cooling at scale.",
+      },
+    ]}
+    bgClass="bg-accent-lightest-2"
+  />
+
+  <!-- V1 to V2 Evolution -->
+  <TextWithImage
+    heading="From V1 to"
+    headingAccent="V2"
+    body="The Open19 specification has evolved significantly since its inception. Version 1 established the foundational form factor and 12V power architecture with 100 Gbps networking. Version 2, published in December 2023, introduced native 48V DC power delivery, standardised liquid cooling with blind-mate plumbing connectors, increased per-brick power capacity to 3.5kW, and upgraded networking to 50 GbE per brick — while maintaining backward compatibility with V1 servers. These advances directly support the higher power densities required by modern AI accelerators and the shift toward liquid cooling for improved energy efficiency."
+    imageSrc="/assets/standards/sci/tabs-business.svg"
+    imageAlt="Open19 V1 to V2 evolution"
+    bgClass="bg-accent-lightest-2"
+  />
+
+  <!-- Why it matters -->
+  <TextWithImage
+    heading="Sustainability Through"
+    headingAccent="Standardisation"
+    body="Data centres account for a significant and growing share of global electricity consumption. Open19 addresses this at the physical layer: standardised liquid cooling enables more efficient heat removal than air cooling; native 48V DC power reduces conversion losses; and vendor-neutral form factors allow operators to select the most energy-efficient components without lock-in. When the physical infrastructure is standardised, data centre operators can optimise for sustainability rather than compatibility."
+    imageSrc="/assets/standards/sci/tabs-practitioners.svg"
+    imageAlt="Sustainability through standardisation"
+    reversed
+    bgClass="bg-accent-lightest-2"
+  />
+
+  <!-- SSIA & GSF -->
+  <section class="py-8 md:py-10 bg-white">
+    <div class="container">
+      <div class="mx-auto max-w-5xl text-center">
+        <h2 class="text-2xl font-semibold md:text-3xl lg:text-4xl">
+          From <span class="font-bold text-primary">SSIA</span> to the Green Software Foundation
+        </h2>
+        <p class="mt-6 text-lg leading-relaxed md:text-xl">
+          Open19 was originally created by LinkedIn in 2016 and donated to the Linux Foundation. It was subsequently stewarded by the <strong>Sustainable and Scalable Infrastructure Alliance (SSIA)</strong> — an organisation focused on advancing open, sustainable data centre standards. When SSIA merged into the Green Software Foundation, it brought the Open19 specification with it, ensuring the standard continues to be developed in an open, collaborative environment with a clear focus on sustainability.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Get Involved -->
+  <CardGrid
+    heading="Get Involved with *Open19*"
+    body="Review the specification, contribute to its development, and help shape the future of sustainable data centre infrastructure."
+    columns={3}
+    cards={[
+      {
+        icon: "/assets/standards/sci/resource-spec-icon.svg",
+        title: "View the Specification",
+        description: "Browse the Open19 specification, technical chapters, and working group materials on GitHub.",
+        ctaText: "View on GitHub",
+        ctaHref: "https://github.com/Green-Software-Foundation/open19",
+        featured: true,
+      },
+      {
+        icon: "/assets/standards/sci/resource-discuss-icon.svg",
+        title: "Raise Issues & Contribute",
+        description: "Open issues, submit pull requests, and collaborate on the specification directly in the repository.",
+        ctaText: "Open an Issue",
+        ctaHref: "https://github.com/Green-Software-Foundation/open19/issues",
+      },
+      {
+        icon: "/assets/standards/sci/dive-icon-4.svg",
+        title: "Become a GSF Member",
+        description: "Join the Green Software Foundation to participate in working groups shaping open hardware standards.",
+        ctaText: "Get in Touch",
+        ctaHref: "/membership/",
+      },
+    ]}
+    bgClass="bg-accent-lightest-2"
+  />
+
+  <!-- CTA -->
+  <CTABanner
+    heading="Open standards for a more sustainable data centre industry"
+    body="Open19 defines the physical foundation that enables greener, more efficient data centres. Whether you are a hardware manufacturer, data centre operator, or sustainability practitioner, your input can help shape how the industry builds infrastructure for decades to come."
+    ctaText="View on GitHub"
+    ctaHref="https://github.com/Green-Software-Foundation/open19"
+  />
+
+  <Footer />
+</Layout>

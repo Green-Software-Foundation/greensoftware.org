@@ -37,6 +37,7 @@ export const navItems = [
         title: "Hardware",
         links: [
           { href: "/standards/wdpc/", label: "WDPC", description: "Data centre power and cooling efficiency" /* iconSrc: pi("wdpc"), icon: "cloud" */ },
+          { href: "/standards/open19/", label: "Open19", description: "Open standard for sustainable data centre infrastructure" },
         ],
       },
       {
