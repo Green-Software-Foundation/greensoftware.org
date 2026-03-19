@@ -10,7 +10,11 @@ interface Props {
   ctaText?: string;
   /** CTA button href */
   ctaHref?: string;
-  /** Footer note text */
+  /** Secondary CTA button text */
+  secondaryCtaText?: string;
+  /** Secondary CTA button href */
+  secondaryCtaHref?: string;
+  /** Footer note text (supports HTML) */
   note?: string;
   /** Background class */
   bgClass?: string;
@@ -21,6 +25,8 @@ const {
   body = "",
   ctaText = "Get Started",
   ctaHref = "#",
+  secondaryCtaText,
+  secondaryCtaHref,
   note,
   bgClass = "bg-primary-dark",
 } = Astro.props;
@@ -36,13 +42,18 @@ const {
         {body}
       </p>
     )}
-    <div class="mt-8">
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
       <a href={ctaHref}>
         <Button variant="primary-invert">{ctaText}</Button>
       </a>
+      {secondaryCtaText && secondaryCtaHref && (
+        <a href={secondaryCtaHref}>
+          <Button variant="outline" className="border-white/30 text-white hover:bg-white/10">{secondaryCtaText}</Button>
+        </a>
+      )}
     </div>
     {note && (
-      <p class="mt-4 text-xs text-white/50">{note}</p>
+      <p class="mt-4 text-xs text-white/50" set:html={note} />
     )}
   </div>
 </section>

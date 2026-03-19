@@ -56,7 +56,7 @@ timeline:
     body: >
       The Policy Working Group's first formal policy endorsement. The Act recognised that AI
       computational operations were doubling every 10 months, that generating a single AI image
-      consumes 1.35 kWh of energy, and that AI energy use could reach 85–134 terawatt hours
+      consumes <a href="https://arxiv.org/pdf/2311.16863.pdf">1.35 kWh of energy</a>, and that AI energy use could reach 85–134 terawatt hours
       annually by 2027 — as much as the Netherlands consumes. GSF's endorsement called for
       mandated studies on AI's environmental impacts, an AI Environmental Impacts Consortium,
       and a voluntary reporting framework for AI developers.
@@ -77,14 +77,14 @@ timeline:
       href: /articles/celebrating-the-ratification-of-the-policy-radar/
 
   - date: June 2025
-    heading: Aya Saed elected co-chair
+    heading: Aya Saed served as co-chair
     body: >
-      Aya Saed, Director of AI Policy and Strategy at Scope3, brought experience as Counsel
-      and Legislative Director in the U.S. House of Representatives. As she explained: "Drawing
-      from my experience with Congress, I've seen firsthand how decision-makers struggle to
-      navigate this territory without comprehensive, technically grounded frameworks. My goal
-      is to help make this Working Group the connective tissue between technical expertise and
-      policy action."
+      Aya Saed, then Director of AI Policy and Strategy at Scope3, served as co-chair of the
+      Policy Working Group, bringing experience as Counsel and Legislative Director in the U.S.
+      House of Representatives. As she explained at the time: "Drawing from my experience with
+      Congress, I've seen firsthand how decision-makers struggle to navigate this territory
+      without comprehensive, technically grounded frameworks. My goal is to help make this
+      Working Group the connective tissue between technical expertise and policy action."
     source:
       text: Read about Aya Saed's election as PWG co-chair
       href: /articles/leadership-update-aya-saed-elected-co-chair-of-the-policy-working-group/
@@ -129,6 +129,7 @@ contributors:
   - name: Chris Adams
     role: Director of Technology and Policy
     org: Green Web Foundation
+    photo: /assets/articles/authors/chris-adams.jpeg
     contribution: >
       Proposed the Policy Radar project, chairs the Policy Working Group, and bridges
       the technical standards world and the policy world through his active membership
@@ -178,7 +179,11 @@ cta:
     GSF members can submit new policies and participate in the Policy Working Group's
     consultation responses — ensuring your voice reaches policymakers before regulations
     are finalised.
-  note: Browse the Policy Radar at policy-radar.greensoftware.foundation
+  ctaText: Visit the Policy Radar →
+  ctaHref: https://policy-radar.greensoftware.foundation/
+  secondaryCtaText: Join the Policy Working Group
+  secondaryCtaHref: /membership/
+  note: Browse the Policy Radar at <a href="https://policy-radar.greensoftware.foundation/" class="underline text-white/70 hover:text-white">policy-radar.greensoftware.foundation</a>
 ---
 
 In 2024, many technology and sustainability professionals across GSF's membership were facing the same challenge: they couldn't keep up with new environmental legislation. While guidance on existing regulations was available, there was far less visibility into *developing* legislation — the bills being drafted, the consultations being opened, the deadlines approaching. By the time organisations heard about a new regulation, the consultation period was often over.

@@ -175,7 +175,7 @@ function initials(name: string) {
                   <div class="flex-1 pb-2">
                     <h3 class="font-bold text-xl text-primary mb-1 leading-snug">{entry.heading}</h3>
                     <p class="text-accent font-extrabold text-xs uppercase tracking-widest mb-1">{entry.date}</p>
-                    <p class="text-gray-darker leading-relaxed mb-3">{entry.body}</p>
+                    <p class="text-gray-darker leading-relaxed mb-3 [&_a]:text-primary [&_a]:underline [&_a:hover]:text-primary-dark" set:html={entry.body} />
                     {entry.source && (
                       <a href={entry.source.href} class="text-sm font-semibold text-primary hover:underline">
                         {entry.source.text} →
@@ -276,8 +276,10 @@ function initials(name: string) {
     <CTABanner
       heading={cta.heading}
       body={cta.body}
-      ctaText="Discuss your challenges with us"
-      ctaHref="/membership/"
+      ctaText={cta.ctaText || "Discuss your challenges with us"}
+      ctaHref={cta.ctaHref || "/membership/"}
+      secondaryCtaText={cta.secondaryCtaText}
+      secondaryCtaHref={cta.secondaryCtaHref}
       note={cta.note}
     />
   )}

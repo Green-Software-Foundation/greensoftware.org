@@ -124,6 +124,10 @@ const stories = defineCollection({
       heading: z.string(),
       body: z.string(),
       note: z.string().optional(),
+      ctaText: z.string().optional(),
+      ctaHref: z.string().optional(),
+      secondaryCtaText: z.string().optional(),
+      secondaryCtaHref: z.string().optional(),
     }).optional(),
   }),
 });
