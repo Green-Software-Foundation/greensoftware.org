@@ -42,7 +42,7 @@ const {
       </a>
     </div>
     {note && (
-      <p class="mt-4 text-xs text-white/50">{note}</p>
+      <p class="mt-4 text-xs text-white/50" set:html={note} />
     )}
   </div>
 </section>
