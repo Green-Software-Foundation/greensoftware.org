@@ -157,6 +157,12 @@ const parentWg = projects.find(p => p.name === sciProject?.parent);
           <p class="text-3xl font-bold text-primary md:text-4xl lg:text-5xl font-mono">
             SCI = (E &times; I + M) per R
           </p>
+          <div class="mt-6 grid grid-cols-2 gap-x-8 gap-y-3 text-left text-sm text-primary-dark md:grid-cols-4 md:text-base">
+            <div><span class="font-bold text-primary">E</span> = Energy consumed</div>
+            <div><span class="font-bold text-primary">I</span> = Carbon intensity of that energy</div>
+            <div><span class="font-bold text-primary">M</span> = Embodied hardware emissions</div>
+            <div><span class="font-bold text-primary">R</span> = Functional unit</div>
+          </div>
         </div>
 
         <p class="text-lg md:text-xl">
@@ -167,6 +173,7 @@ const parentWg = projects.find(p => p.name === sciProject?.parent);
   </section>
 
   <!-- Organizations Leading with SCI (Success Stories Carousel) -->
+  <div id="organisations-leading"></div>
   <ArticleCarousel
     heading="Organisations Leading with SCI"
     body="Financial institutions, consultancies, and technology companies worldwide are implementing SCI to measure and reduce software carbon emissions."
@@ -203,7 +210,7 @@ const parentWg = projects.find(p => p.name === sciProject?.parent);
       {
         title: "Carbon-Aware Computing at UBS",
         organizations: [{ name: "UBS & Microsoft" }],
-        description: "UBS and Microsoft implemented the first enterprise-scale carbon-aware computing system, using SCI and the Carbon Aware SDK to reduce emissions in their core risk platform workloads.",
+        description: "UBS and Microsoft implemented the first enterprise-scale carbon-aware computing system, using SCI and the Carbon Aware Software Development Kit (SDK) to reduce emissions in their core risk platform workloads.",
         href: "https://news.microsoft.com/de-ch/carbon-aware-computing-whitepaper/",
         cta: "Read Whitepaper →",
       },
@@ -241,8 +248,8 @@ const parentWg = projects.find(p => p.name === sciProject?.parent);
               <span class="text-sm text-gray-darker">Peer-Reviewed Research since 2022</span>
             </div>
             <div class="flex flex-col gap-2">
-              <span class="text-3xl font-bold text-primary">ACM FAccT & SoCC</span>
-              <span class="text-sm text-gray-darker">Published in Top Venues</span>
+              <span class="text-3xl font-bold text-primary">ACM FAccT &amp; SoCC</span>
+              <span class="text-sm text-gray-darker">Published in ACM Conference on Fairness, Accountability, and Transparency &amp; Symposium on Cloud Computing</span>
             </div>
           </div>
         </div>
@@ -254,7 +261,7 @@ const parentWg = projects.find(p => p.name === sciProject?.parent);
             <a href="https://learn.microsoft.com/en-us/azure/well-architected/sustainability/sustainability-design-methodology" target="_blank" rel="noopener noreferrer" class="text-primary text-sm font-medium hover:underline">Read Documentation &rarr;</a>
           </div>
           <div class="rounded-xl border bg-white p-6 shadow-sm">
-            <h3 class="font-semibold mb-2">ACM FAccT 2022 Research</h3>
+            <h3 class="font-semibold mb-2">ACM Conference on Fairness, Accountability, and Transparency (FAccT) 2022</h3>
             <p class="text-sm text-gray-darker mb-3">"Measuring the Carbon Intensity of AI in Cloud Instances"</p>
             <a href="https://dl.acm.org/doi/pdf/10.1145/3531146.3533234" target="_blank" rel="noopener noreferrer" class="text-primary text-sm font-medium hover:underline">Read Paper &rarr;</a>
           </div>
@@ -264,7 +271,7 @@ const parentWg = projects.find(p => p.name === sciProject?.parent);
             <a href="https://www.thoughtworks.com/insights/blog/ethical-tech/calculating-software-carbon-intensity" target="_blank" rel="noopener noreferrer" class="text-primary text-sm font-medium hover:underline">Read Guide &rarr;</a>
           </div>
           <div class="rounded-xl border bg-white p-6 shadow-sm">
-            <h3 class="font-semibold mb-2">ACM Symposium on Cloud Computing (SoCC '24)</h3>
+            <h3 class="font-semibold mb-2">ACM Symposium on Cloud Computing (SoCC) 2024</h3>
             <p class="text-sm text-gray-darker mb-3">The Sunk Carbon Fallacy: Rethinking Carbon Footprint Metrics for Effective Carbon-Aware Scheduling.</p>
             <a href="https://arxiv.org/abs/2410.15087" target="_blank" rel="noopener noreferrer" class="text-primary text-sm font-medium hover:underline">Read Paper &rarr;</a>
           </div>
@@ -282,18 +289,24 @@ const parentWg = projects.find(p => p.name === sciProject?.parent);
         value: "practitioners",
         heading: "Practitioners",
         description: "Transform your daily work into climate action. The SCI score gives you a clear target for optimisation — whether you're writing code, designing systems, or managing databases. See the immediate impact of your choices on your software's carbon footprint. Make efficiency improvements that matter both technically and environmentally. Join a global community of practitioners building the future of sustainable software.",
+        ctaText: "Browse the SCI Guide →",
+        ctaHref: "https://sci-guide.greensoftware.foundation/",
         image: { src: "/assets/standards/sci/why-wdpc-feat-1.svg" },
       },
       {
         value: "business-leaders",
         heading: "Business Leaders",
         description: "Turn sustainability commitments into measurable business value. The SCI specification provides ISO-certified metrics that satisfy stakeholder demands, regulatory requirements, and corporate responsibility goals. Reduce operational costs through improved efficiency. Differentiate your products with verified sustainability credentials. Build trust with customers who increasingly choose partners based on environmental leadership.",
+        ctaText: "Read case studies →",
+        ctaHref: "#organisations-leading",
         image: { src: "/assets/standards/sci/why-wdpc-feat-2.svg" },
       },
       {
         value: "sustainability-teams",
         heading: "Sustainability Teams",
         description: "Finally, a standardised way to measure and report software's environmental impact. The SCI specification integrates seamlessly with existing sustainability frameworks while providing the technical depth needed for accurate carbon accounting. Track progress with confidence using ISO-accredited methodology. Compare solutions objectively. Drive organisation-wide improvements with clear, actionable metrics that everyone can understand and act upon.",
+        ctaText: "Join the Discussion →",
+        ctaHref: "https://github.com/Green-Software-Foundation/sci/discussions",
         image: { src: "/assets/standards/sci/why-wdpc-feat-3.svg" },
       },
     ]}
@@ -324,6 +337,13 @@ const parentWg = projects.find(p => p.name === sciProject?.parent);
         description: "Connect with the SCI community, get implementation help, and share your experiences.",
         ctaText: "Join the Discussion",
         ctaHref: "https://github.com/Green-Software-Foundation/sci/discussions",
+      },
+      {
+        icon: "/assets/standards/sci/resource-spec-icon.svg",
+        title: "Green Software Patterns",
+        description: "A curated database of software patterns that reduce carbon emissions — apply them to lower your SCI score across web, cloud, AI, and mobile applications.",
+        ctaText: "Browse Patterns",
+        ctaHref: "https://patterns.greensoftware.foundation/",
       },
     ]}
     bgClass="bg-accent-lightest-2"

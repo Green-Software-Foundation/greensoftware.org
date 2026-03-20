@@ -8,6 +8,10 @@ export type Tab = {
   value: string;
   heading: string;
   description: string;
+  /** Optional per-tab CTA link text */
+  ctaText?: string;
+  /** Optional per-tab CTA link href */
+  ctaHref?: string;
   /** Optional per-tab image (overrides the shared imageSrc when this tab is active) */
   image?: {
     src: string;
@@ -112,6 +116,14 @@ export const TabbedSection = (props: Props) => {
                 className="overflow-hidden"
               >
                 <p className="mt-2 text-primary-lighter">{tab.description}</p>
+                {tab.ctaText && tab.ctaHref && (
+                  <a
+                    href={tab.ctaHref}
+                    className="mt-3 inline-flex items-center text-sm font-bold text-accent hover:text-accent/80 transition-colors"
+                  >
+                    {tab.ctaText}
+                  </a>
+                )}
               </motion.div>
             </div>
           </TabsTrigger>
