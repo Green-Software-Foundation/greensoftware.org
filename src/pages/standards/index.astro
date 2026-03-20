@@ -17,17 +17,15 @@ import projects from "@/data/projects.json";
 // urlSlug overrides the project slug for the /standards/<slug>/ URL where they differ
 // lifecycle/description overrides correct stale Notion data locally
 const standardDefs = [
-  { slug: "sci", group: "software" as const },
-  { slug: "sci-ai", group: "software" as const, lifecycle: "Published", description: "Extending the SCI methodology to AI systems — standardising carbon measurement across training, inference, and deployment, applicable from LLMs to computer vision." },
-  { slug: "sci-web", group: "software" as const, description: "Extending the SCI methodology to the web — standardising carbon measurement for websites and web applications across hosting, delivery, and end-user devices." },
-  { slug: "soft", group: "software" as const, lifecycle: "Published" },
-  { slug: "real-time-cloud", urlSlug: "rtc", group: "software" as const, description: "A cross-provider standard that normalises energy, carbon intensity, and renewable energy data from AWS, Azure, and GCP into a single comparable dataset — enabling accurate Scope 3 reporting and real-time carbon-aware workload scheduling." },
-  { slug: "wdpc", group: "hardware" as const, lifecycle: "Approved" },
-  { slug: "see", group: "software" as const },
-  { slug: "swe", group: "software" as const },
+  { slug: "sci" },
+  { slug: "sci-ai", lifecycle: "Published", description: "Extending the SCI methodology to AI systems — standardising carbon measurement across training, inference, and deployment, applicable from LLMs to computer vision." },
+  { slug: "sci-web", description: "Extending the SCI methodology to the web — standardising carbon measurement for websites and web applications across hosting, delivery, and end-user devices." },
+  { slug: "soft", lifecycle: "Published" },
+  { slug: "real-time-cloud", urlSlug: "rtc", description: "A cross-provider standard that normalises energy, carbon intensity, and renewable energy data from AWS, Azure, and GCP into a single comparable dataset — enabling accurate Scope 3 reporting and real-time carbon-aware workload scheduling." },
+  { slug: "wdpc", lifecycle: "Approved" },
+  { slug: "see" },
+  { slug: "swe" },
 ];
-
-type ProjectEntry = { name: string; slug: string; urlSlug: string; lifecycle: string | null; description: string | null; website: string | null; icon: string | null; group: "software" | "hardware" };
 
 const standardProjects = standardDefs
   .map(def => {
@@ -36,15 +34,19 @@ const standardProjects = standardDefs
     return {
       ...p,
       urlSlug: def.urlSlug || p.slug,
-      group: def.group,
       ...(def.lifecycle ? { lifecycle: def.lifecycle } : {}),
       ...(def.description ? { description: def.description } : {}),
     };
   })
-  .filter(Boolean) as ProjectEntry[];
+  .filter(Boolean) as Array<{ name: string; slug: string; urlSlug: string; lifecycle: string | null; description: string | null; website: string | null; icon: string | null; parent: string | null }>;
 
-const softwareProjects = standardProjects.filter(p => p.group === "software");
-const hardwareProjects = standardProjects.filter(p => p.group === "hardware");
+// Group by working group
+const workingGroups = new Map<string, typeof standardProjects>();
+for (const project of standardProjects) {
+  const group = project.parent || "Other";
+  if (!workingGroups.has(group)) workingGroups.set(group, []);
+  workingGroups.get(group)!.push(project);
+}
 ---
 
 <Layout
@@ -105,57 +107,34 @@ const hardwareProjects = standardProjects.filter(p => p.group === "hardware");
           Specifications at every stage of the lifecycle — from early proposals to internationally recognised standards.
         </p>
       </div>
-      <!-- Software Standards Working Group -->
-      <h3 class="mt-12 text-lg font-bold text-primary-dark">Software Standards Working Group</h3>
-      <div class="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {softwareProjects.map((project) => (
-          <div class="flex flex-col rounded-lg border bg-white p-5 shadow-sm">
-            <div class="mb-3 flex items-center gap-3">
-              {project.icon && <img src={project.icon} alt="" class="h-8 w-8" />}
-              {project.lifecycle && (
-                <span class="rounded-full bg-accent-lighter px-2.5 py-0.5 text-xs font-semibold text-accent-darker">
-                  {project.lifecycle}
-                </span>
-              )}
-            </div>
-            <h3 class="text-lg font-bold">{project.name}</h3>
-            {project.description && (
-              <p class="mt-2 text-sm text-gray-darker grow">{project.description}</p>
-            )}
-            {project.lifecycle && !["Proposal", "Pre-proposal"].includes(project.lifecycle) && (
-              <a href={`/standards/${project.urlSlug}/`} class="mt-3 inline-flex items-center text-sm font-bold text-primary hover:underline">
-                Learn more →
-              </a>
-            )}
+      {[...workingGroups.entries()].map(([groupName, groupProjects]) => (
+        <div class="mt-12">
+          <h3 class="text-lg font-bold text-primary-dark mb-6">{groupName}</h3>
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {groupProjects.map((project) => (
+              <div class="flex flex-col rounded-lg border bg-white p-5 shadow-sm">
+                <div class="mb-3 flex items-center gap-3">
+                  {project.icon && <img src={project.icon} alt="" class="h-8 w-8" />}
+                  {project.lifecycle && (
+                    <span class="rounded-full bg-accent-lighter px-2.5 py-0.5 text-xs font-semibold text-accent-darker">
+                      {project.lifecycle}
+                    </span>
+                  )}
+                </div>
+                <h3 class="text-lg font-bold">{project.name}</h3>
+                {project.description && (
+                  <p class="mt-2 text-sm text-gray-darker grow">{project.description}</p>
+                )}
+                {project.lifecycle && !["Proposal", "Pre-proposal"].includes(project.lifecycle) && (
+                  <a href={`/standards/${project.urlSlug}/`} class="mt-3 inline-flex items-center text-sm font-bold text-primary hover:underline">
+                    Learn more →
+                  </a>
+                )}
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-
-      <!-- Hardware Standards Working Group -->
-      <h3 class="mt-12 text-lg font-bold text-primary-dark">Hardware Standards Working Group</h3>
-      <div class="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {hardwareProjects.map((project) => (
-          <div class="flex flex-col rounded-lg border bg-white p-5 shadow-sm">
-            <div class="mb-3 flex items-center gap-3">
-              {project.icon && <img src={project.icon} alt="" class="h-8 w-8" />}
-              {project.lifecycle && (
-                <span class="rounded-full bg-accent-lighter px-2.5 py-0.5 text-xs font-semibold text-accent-darker">
-                  {project.lifecycle}
-                </span>
-              )}
-            </div>
-            <h3 class="text-lg font-bold">{project.name}</h3>
-            {project.description && (
-              <p class="mt-2 text-sm text-gray-darker grow">{project.description}</p>
-            )}
-            {project.lifecycle && !["Proposal", "Pre-proposal"].includes(project.lifecycle) && (
-              <a href={`/standards/${project.urlSlug}/`} class="mt-3 inline-flex items-center text-sm font-bold text-primary hover:underline">
-                Learn more →
-              </a>
-            )}
-          </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   </section>
 
@@ -215,11 +194,10 @@ const hardwareProjects = standardProjects.filter(p => p.group === "hardware");
 
   <!-- Final CTA -->
   <CTABanner
-    heading="Want to propose a new standard or join an existing project?"
-    body="Every standard starts with a conversation. Whether you want to contribute to an existing specification or propose something new, we'd love to hear from you."
-    ctaText="Get involved"
-    ctaHref="/membership/"
-    note="Already a developer or researcher? Explore our projects on the <a href='https://directory.greensoftware.foundation/' class='underline text-white/70 hover:text-white'>GSF Directory</a> or join an <a href='/assemblies/' class='underline text-white/70 hover:text-white'>Assembly</a>."
+    heading="Want to contribute to a standard or join an existing project?"
+    body="Explore our projects in the GSF Directory — find the right working group, see who's involved, and get started."
+    ctaText="Browse projects in the directory"
+    ctaHref="https://directory.greensoftware.foundation/projects"
   />
 
   <Footer />
