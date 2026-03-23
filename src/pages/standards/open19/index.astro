@@ -90,10 +90,51 @@ const MEMBERSHIP_CTA = "https://share.hsforms.com/1NNvkCLgfS4GIUJ0XPH93iw4tvhy";
     heading="Developed with consensus from GSF member organisations"
   />
 
+  <!-- Plain-English Explainer -->
+  <TextBlock
+    heading="The Universal Cabinet — and the Standard it Was Missing"
+    body="The 19-inch rack is the near-universal server cabinet format used in data centres around the world. Despite this common physical footprint, servers, power, and cabling have historically been proprietary — meaning hardware from one vendor rarely connects cleanly with gear from another. Open19 fills that gap. Think of it like USB for data centre infrastructure: it defines a common connector contract for power, data, and cooling so that any compliant server brick slides into any compliant rack and works immediately — without bespoke cabling or vendor lock-in."
+    bgClass="bg-accent-lightest-2"
+  />
+
+  <!-- Origin & History -->
+  <Timeline
+    heading="A Standard with a Track Record"
+    body="Open19 has been refined over nearly a decade of real-world deployments, evolving from a single-company proposal into an industry-wide open standard now stewarded by the Green Software Foundation."
+    items={[
+      {
+        year: "2016",
+        title: "Born at LinkedIn",
+        description: "LinkedIn developed and open-sourced the initial Open19 specification — designed to standardise 19-inch rack hardware and reduce deployment complexity at hyperscale.",
+      },
+      {
+        year: "2017",
+        title: "Open19 Foundation",
+        description: "The Open19 Foundation was created with founding members including Flex, GE Digital, Hewlett Packard Enterprise, and Vapor IO to broaden the spec beyond a single company.",
+      },
+      {
+        year: "2021",
+        title: "Linux Foundation",
+        description: "Open19 joined the Linux Foundation, gaining neutral governance and accelerating adoption across telecoms, colocation providers, and cloud-scale operators.",
+      },
+      {
+        year: "2023",
+        title: "SSIA & V2 Release",
+        description: "Rebranded as the Sustainable and Scalable Infrastructure Alliance (SSIA), the project released V2 in December 2023 — adding 48V native power and pluggable liquid cooling.",
+      },
+      {
+        year: "2025",
+        title: "Green Software Foundation",
+        description: "Open19 moved under the Green Software Foundation's Hardware Standards Working Group, explicitly aligning the standard with sustainability as a primary design criterion.",
+      },
+    ]}
+    bgClass="bg-accent-lightest-2"
+  />
+
   <!-- What is Open19? -->
   <FeatureGrid
     heading="What is *Open19*?"
-    body="Open19 is an open hardware specification that standardises server, storage, and networking form factors within the universal 19-inch rack footprint — removing proprietary barriers and unlocking a competitive multi-vendor ecosystem."
+    body="Open19 is an open hardware specification that standardises server, storage, and networking form factors within the universal 19-inch rack footprint — removing proprietary barriers and unlocking a competitive multi-vendor ecosystem. Critically, the specification constrains only the physical envelope, power interfaces, and network connectors — never the internal components — so vendors retain full freedom to differentiate on processors, memory, storage, and GPUs."
     columns={2}
     variant="bordered"
     features={[
@@ -105,7 +146,7 @@ const MEMBERSHIP_CTA = "https://share.hsforms.com/1NNvkCLgfS4GIUJ0XPH93iw4tvhy";
       {
         icon: "/assets/standards/wdpc/realtime-icon.svg",
         title: "Blind-Mate Connectors",
-        description: "Power and data connections complete automatically on insertion — no rear-of-rack cabling once the cage is installed. This transforms rack deployment from a multi-hour cabling exercise into a slide-and-go operation.",
+        description: "Power and data connections complete automatically on insertion — no rear-of-rack cabling once the cage is installed. Each brick receives 50 GbE networking (with a 200 GbE pathway) via standardised switch modules, making deployment as simple as sliding hardware into a slot.",
       },
       {
         icon: "/assets/standards/wdpc/grid-stability-icon.svg",
@@ -190,10 +231,43 @@ const MEMBERSHIP_CTA = "https://share.hsforms.com/1NNvkCLgfS4GIUJ0XPH93iw4tvhy";
           <img src="/assets/standards/wdpc/mission-card-up-decor.svg" class="h-12 w-16 md:h-14 md:w-24" />
         </div>
         <div class="text-center">
-          <h3 class="text-2xl font-semibold">The V2 Platform Specification</h3>
-          <p class="mt-3 text-lg font-medium text-primary-dark italic md:mt-4 md:text-xl">
-            Released in December 2023, Open19 V2 delivers native 48V power distribution, a pluggable liquid cooling standard, and support for 3.5 kW per brick — up from 400 W in V1. These advances unlock the high-density, energy-efficient infrastructure demanded by modern AI and cloud workloads, while remaining compatible with standard 19-inch rack environments.
+          <h3 class="text-2xl font-semibold">V1 → V2: What Changed</h3>
+          <p class="mt-3 text-base text-muted-foreground md:mt-4">
+            Released December 2023. V2 remains physically compatible with V1 racks — existing 19-inch infrastructure does not need replacement.
           </p>
+        </div>
+        <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+          {[
+            {
+              label: "Per-brick power",
+              v1: "400 W · 12V DC",
+              v2: "3.5 kW · 48V DC native",
+            },
+            {
+              label: "Cooling",
+              v1: "Air cooling only",
+              v2: "Air + pluggable liquid cooling (blind-mate)",
+            },
+            {
+              label: "Networking",
+              v1: "100 Gbps baseline",
+              v2: "50 GbE per brick · 200 GbE pathway",
+            },
+          ].map((row) => (
+            <div class="rounded-2xl border bg-white/60 p-6 text-left">
+              <p class="text-xs font-bold uppercase tracking-widest text-muted-foreground">{row.label}</p>
+              <div class="mt-3 flex flex-col gap-2">
+                <div class="flex items-start gap-2">
+                  <span class="mt-0.5 rounded bg-accent-lighter px-1.5 py-0.5 text-xs font-bold">V1</span>
+                  <span class="text-sm">{row.v1}</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <span class="mt-0.5 rounded bg-primary px-1.5 py-0.5 text-xs font-bold text-white">V2</span>
+                  <span class="text-sm font-medium">{row.v2}</span>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -312,10 +386,10 @@ const MEMBERSHIP_CTA = "https://share.hsforms.com/1NNvkCLgfS4GIUJ0XPH93iw4tvhy";
               {
                 icon: "/assets/standards/wdpc/dive-icon-2.svg",
                 title: "Contribute to the Project",
-                description: "Work on the Open19 codebase — open issues, submit PRs, and collaborate on the specification.",
+                description: "Work on the Open19 specification — open issues, submit PRs, and collaborate on the document. The repository is public.",
                 buttonLink: GSF_OPEN19_REPO,
                 buttonText: "Get Involved",
-                badge: "GSF Members Only",
+                badge: undefined,
               },
               {
                 icon: "/assets/standards/wdpc/dive-icon-4.svg",
